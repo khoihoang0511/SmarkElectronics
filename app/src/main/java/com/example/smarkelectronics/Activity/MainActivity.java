@@ -1,8 +1,10 @@
-package com.example.smarkelectronics;
+package com.example.smarkelectronics.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.smarkelectronics.R;
 
 public class MainActivity extends AppCompatActivity {
 

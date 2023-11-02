@@ -1,14 +1,16 @@
-package com.example.smarkelectronics;
+package com.example.smarkelectronics.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ProductActivity extends AppCompatActivity {
+import com.example.smarkelectronics.R;
+
+public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
+        setContentView(R.layout.activity_sign_up);
     }
 }
