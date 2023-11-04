@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/ichome"
+        android:icon="@drawable/ic_home_24"
+        android:title="" />
+    <item
+        android:id="@+id/icfavorite"
+        android:icon="@drawable/ic_bookmark_24"
+        android:title=""/>
+    <item
+        android:id="@+id/icnotification"
+        android:icon="@drawable/ic_notifications_24"
+        android:title=""/>
+    <item
+        android:id="@+id/icprofile"
+        android:icon="@drawable/ic_person_24"
+        android:title=""/>
+
+
+</menu>

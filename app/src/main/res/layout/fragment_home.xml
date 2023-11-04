@@ -1,53 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Fragment.HomeFragment">
 
-    <androidx.appcompat.widget.Toolbar
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trang chủ"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"/>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/logo"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="10dp"/>
+
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Trang chủ"
-                android:textSize="20dp"
+                android:background="#F8F8F8"
+                android:orientation="vertical"
+                android:padding="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Danh mục"
+                        android:textColor="#303733"
+                        android:layout_margin="5dp"
+                        android:textSize="16dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:drawableRight="@drawable/ic_chevron_right_24"
+                        android:layout_margin="5dp"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="6"
+                    android:rowCount="1">
+
+                    <Button
+                        android:layout_width="93dp"
+                        android:layout_height="96dp"
+                        android:text="Tất cả"
+                        app:cornerRadius="16px"
+                        android:layout_column="0"
+                        android:layout_row="0"
+                        android:textSize="12dp"
+                        android:drawableTop="@drawable/ic_border_all_24"
+                        android:padding="18dp"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/white"
+                        android:backgroundTint="#4AB7B6"/>
+
+                    <Button
+                        android:layout_width="93dp"
+                        android:layout_height="96dp"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:backgroundTint="#AF558B"
+                        android:drawableTop="@drawable/ic_phone_iphone_24"
+                        android:padding="18dp"
+                        android:text="Điện thoại"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        app:cornerRadius="16px" />
+
+                    <Button
+                        android:layout_width="93dp"
+                        android:layout_height="96dp"
+                        android:text="Laptop"
+                        app:cornerRadius="16px"
+                        android:layout_column="2"
+                        android:layout_row="0"
+                        android:textSize="12dp"
+                        android:drawableTop="@drawable/ic_laptop_chromebook_24"
+                        android:padding="18dp"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/white"
+                        android:backgroundTint="#4B9DCB"/>
+
+                    <Button
+                        android:layout_width="93dp"
+                        android:layout_height="96dp"
+                        android:layout_row="0"
+                        android:layout_column="4"
+                        android:layout_margin="5dp"
+                        android:backgroundTint="#00BD5B"
+                        android:drawableTop="@drawable/ic_headset_24"
+                        android:padding="18dp"
+                        android:text="Tai nghe"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        app:cornerRadius="16px" />
+
+                    <Button
+                        android:layout_width="93dp"
+                        android:layout_height="96dp"
+                        android:text="Sạc dự phòng"
+                        app:cornerRadius="16px"
+                        android:layout_column="4"
+                        android:layout_row="0"
+                        android:textSize="12dp"
+                        android:drawableTop="@drawable/ic_battery_charging_full_24"
+                        android:padding="7dp"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/white"
+                        android:backgroundTint="#A187D9"/>
+                    <Button
+                        android:layout_width="93dp"
+                        android:layout_height="96dp"
+                        android:text="Phụ kiện"
+                        app:cornerRadius="16px"
+                        android:layout_column="5"
+                        android:layout_row="0"
+                        android:textSize="12dp"
+                        android:drawableTop="@drawable/ic_settings_input_composite_24"
+                        android:padding="18dp"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/white"
+                        android:backgroundTint="#FDAF3D"/>
+                </GridLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_paper"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"/>
+            <LinearLayout
+                android:id="@+id/indicator_layout"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:text="Tất cả sản phẩm"
+                android:textSize="16dp"
                 android:textStyle="bold"
-                android:layout_centerHorizontal="true"/>
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/logo"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:background="#DDF6FC"/>
 
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Danh mục"
-            android:textSize="16dp"/>
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="6"
-            android:rowCount="1">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </GridLayout>
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchsanpham"
+                    android:layout_width="303dp"
+                    android:layout_height="39dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_timkiem"
+                    app:queryHint="Tìm kiếm" />
+                <ImageView
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="40dp"
+                    android:layout_height="39dp"
+                    android:padding="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_filter_alt_24"
+                    android:layout_gravity="center"
+                    android:background="@drawable/boder_filter"/>
+            </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_sanpham"/>
+        </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 
 </LinearLayout>
