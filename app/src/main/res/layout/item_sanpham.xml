@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="181dp"
+    android:layout_height="wrap_content"
+    android:padding="7dp">
+
+    <ImageView
+        android:id="@+id/img_sp"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:src="@drawable/laptop_sp"/>
+    <TextView
+        android:id="@+id/tvgiohang"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:background="@drawable/background_bag"
+        android:padding="5dp"
+        android:layout_below="@id/img_sp"
+        android:drawableTop="@drawable/ic_shopping_bag_24"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"/>
+    <TextView
+        android:id="@+id/tvtensp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Laptop Hp Lavilion"
+        android:textColor="#606060"
+        android:textSize="16dp"
+        android:layout_below="@id/tvgiohang"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="15.000.000 đ"
+        android:textColor="#606060"
+        android:textSize="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/tvtensp"/>
+
+
+</RelativeLayout>

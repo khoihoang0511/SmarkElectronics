@@ -5,10 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".Activity.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/fragmentmain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"/>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottmnavigationview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:itemIconTint="@color/icon_tint"
+        app:itemBackground="@android:color/transparent"
+        app:menu="@menu/menu"/>
 
 
 </LinearLayout>
