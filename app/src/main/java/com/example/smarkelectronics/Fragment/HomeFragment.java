@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment {
         //---hiển thị danh sách ảnh
 
 
+
         //----slider tự động
          Runnable runnable = new Runnable() {
             public void run() {
@@ -102,6 +103,7 @@ public class HomeFragment extends Fragment {
         dot.setImageDrawable(ContextCompat.getDrawable(
                 getContext(),R.drawable.selected_dot
         ));
+
         // Đặt sự kiện trượt để cập nhật indicator
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
