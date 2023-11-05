@@ -47,21 +47,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="Danh mục"
-                        android:textColor="#303733"
-                        android:layout_margin="5dp"
-                        android:textSize="16dp"/>
-                    <TextView
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:drawableRight="@drawable/ic_chevron_right_24"
-                        android:layout_margin="5dp"
-                        android:textSize="16dp"/>
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="Danh mục"
+                            android:textColor="#303733"
+                            android:layout_margin="5dp"
+                            android:textSize="16dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_alignParentEnd="true"
+                            android:drawableRight="@drawable/ic_chevron_right_24"
+                            android:layout_margin="5dp"
+                            android:textSize="16dp"/>
+                    </RelativeLayout>
                 </LinearLayout>
                 <HorizontalScrollView
                     android:layout_width="match_parent"

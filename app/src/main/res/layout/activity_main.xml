@@ -11,7 +11,7 @@
         android:id="@+id/fragmentmain"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9"/>
+        android:layout_weight="8"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottmnavigationview"
@@ -20,6 +20,7 @@
         android:layout_weight="1"
         app:itemIconTint="@color/icon_tint"
         app:itemBackground="@android:color/transparent"
+        android:background="@drawable/shade_repair"
         app:menu="@menu/menu"/>
 
 

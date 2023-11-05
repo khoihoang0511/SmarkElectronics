@@ -2,14 +2,14 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:right="1dp" android:left="1dp" android:top="1dp" android:bottom="1dp">
         <shape android:shape="rectangle">
-            <solid android:color="#EFEFEF" /> <!-- Màu bóng -->
-            <corners android:radius="8dp" /> <!-- Độ bo góc của bóng -->
+            <solid android:color="#E4E4E4" /> <!-- Màu bóng -->
+            <corners android:radius="4dp" /> <!-- Độ bo góc của bóng -->
         </shape>
     </item>
-    <item >
+    <item android:bottom="3dp">
         <shape android:shape="rectangle">
-            <solid android:color="#FFFFFF" /> <!-- Màu nền của button -->
-            <corners android:radius="8dp" /> <!-- Độ bo góc của button -->
+            <solid android:color="#FAFAFA" /> <!-- Màu nền của button -->
+            <corners android:radius="4dp" /> <!-- Độ bo góc của button -->
         </shape>
     </item>
 </layer-list>

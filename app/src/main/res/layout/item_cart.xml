@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <CheckBox
+        android:id="@+id/cboxcart"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"/>
+    <ImageView
+        android:id="@+id/imgavatar"
+        android:layout_width="94dp"
+        android:layout_height="120dp"
+        android:layout_toRightOf="@id/cboxcart"
+        android:src="@drawable/mac"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/imgavatar"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/tvnamecart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ipad Pro 11 2021"
+            android:textSize="14dp"/>
+        <TextView
+            android:id="@+id/tvpricecart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="18.990.000 đ"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="#7E7E7E"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/tvmaxcount"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/background_quantity"
+                android:drawableBottom="@drawable/ic_add_24"
+                android:textStyle="bold"
+                android:padding="6dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentEnd="true" />
+            <TextView
+                android:id="@+id/tvquantityProduct"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="@drawable/background_quantity2"
+                android:textStyle="bold"
+                android:text="1"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:layout_marginRight="6dp"
+                android:layout_toLeftOf="@id/tvmaxcount" />
+            <TextView
+                android:id="@+id/tvmincount"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/background_quantity"
+                android:drawableBottom="@drawable/ic_remove_24"
+                android:textStyle="bold"
+                android:padding="6dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="6dp"
+                android:layout_toLeftOf="@id/tvquantityProduct" />
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/black"
+        android:drawableBottom="@drawable/baseline_delete_outline_24"
+        app:cornerRadius="4dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
