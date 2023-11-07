@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +37,13 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.Viewhold
     public void onBindViewHolder(@NonNull AdapterProduct.Viewholder holder, int position) {
         holder.tvtensp.setText(list.get(position).getNameproduct());
         holder.tvgiasp.setText(""+list.get(position).getPriceproduct());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, ""+list.get(position).getNameproduct(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
