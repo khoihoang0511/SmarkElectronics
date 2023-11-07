@@ -83,11 +83,72 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"/>
-
-        <Spinner
-            android:id="@+id/spinnerAddshippingaddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="335dp"
+        android:layout_height="66dp"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="#f5f5f5"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Thành Phố"/>
+        <EditText
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="EX: HỒ CHÍ MINH"
+            android:background="@null"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="335dp"
+        android:layout_height="66dp"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/vien"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Quận/Huyện"/>
+        <EditText
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="EX: Quận 12"
+            android:background="@null"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="335dp"
+        android:layout_height="66dp"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="#f5f5f5"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Phường/Xã"/>
+        <EditText
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="EX: Phường 3"
+            android:background="@null"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnSaveAddress"
+        android:layout_width="335dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="70dp"
+        app:backgroundTint="@null"
+        android:background="@drawable/boder"
+        android:text="Đăng nhập"
+        android:layout_gravity="center"
+        android:textSize="18sp" />
 </LinearLayout>
