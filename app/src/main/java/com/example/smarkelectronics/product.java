@@ -5,12 +5,14 @@ public class product {
     String imgavatar;
     String nameproduct;
     int priceproduct;
+    String noteproduct;
 
-    public product(int idproduct, String imgavatar, String nameproduct, int priceproduct) {
+    public product(int idproduct, String imgavatar, String nameproduct, int priceproduct, String noteproduct) {
         this.idproduct = idproduct;
         this.imgavatar = imgavatar;
         this.nameproduct = nameproduct;
         this.priceproduct = priceproduct;
+        this.noteproduct = noteproduct;
     }
 
     public product() {
@@ -46,5 +48,13 @@ public class product {
 
     public void setPriceproduct(int priceproduct) {
         this.priceproduct = priceproduct;
+    }
+
+    public String getNoteproduct() {
+        return noteproduct;
+    }
+
+    public void setNoteproduct(String noteproduct) {
+        this.noteproduct = noteproduct;
     }
 }
