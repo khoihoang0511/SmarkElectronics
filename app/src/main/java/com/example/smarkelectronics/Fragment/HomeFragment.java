@@ -1,9 +1,14 @@
 package com.example.smarkelectronics.Fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
@@ -13,18 +18,42 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.example.smarkelectronics.Adapter.AdapterProduct;
 import com.example.smarkelectronics.Adapter.ImageSliderAdapter;
 import com.example.smarkelectronics.R;
+import com.example.smarkelectronics.api.API;
+import com.example.smarkelectronics.product;
+import com.mysql.cj.log.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class HomeFragment extends Fragment {
 
     ImageSliderAdapter imageSliderAdapter;
     ViewPager2 viewPager2;
+
+
+
+
+
+    // Api
+    private ProgressDialog progressDialog;
+    private Handler handlerproduct = new Handler();
+
+    AdapterProduct adapterProduct;
+
+    ArrayList<product> list;
+    RecyclerView recyclerView;
 
 
     @Override
@@ -42,6 +71,10 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         viewPager2 = view.findViewById(R.id.view_paper);
+        recyclerView = view.findViewById(R.id.rcvproduct);
+
+        list = new ArrayList<>();
+
 
         //---hiển thị danh sách ảnh
         List<Integer> list = new ArrayList<>();
@@ -122,5 +155,62 @@ public class HomeFragment extends Fragment {
 
 
         return view;
+    }
+
+    //hiểnr thị dữ liệu trên php
+    @Override
+    public void onResume() {
+        super.onResume();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                handlerproduct.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog = new ProgressDialog(getContext());
+                        progressDialog.setMessage("Loading");
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+                    }
+                });
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://khoihoang0511.000webhostapp.com/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                API api = retrofit.create(API.class);
+                Call<ArrayList<product>> callproduct = api.getlistproduct();
+                callproduct.enqueue(new Callback<ArrayList<product>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<product>> call, Response<ArrayList<product>> response) {
+                        if (response.isSuccessful() && response.body() != null){
+                            ArrayList<product> listproduct = response.body();
+                            list.clear();
+                            list.addAll(listproduct);
+                            adapterProduct.notifyDataSetChanged();
+                            progressDialog.dismiss();
+
+                        }else {
+                            Toast.makeText(getContext(), "looix", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<product>> call, Throwable t) {
+                        Toast.makeText(getContext(), "looix 2", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }).start();
+        adapterProduct = new AdapterProduct(getContext(),list);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//        recyclerView.setAdapter(adapterProduct);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(
+                2, StaggeredGridLayoutManager.VERTICAL
+        );
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapterProduct);
+
+
     }
 }

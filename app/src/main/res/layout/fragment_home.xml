@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".Fragment.HomeFragment">
 
     <ScrollView
@@ -16,7 +17,8 @@
             android:orientation="vertical">
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/white">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -27,6 +29,7 @@
                         android:text="Trang chủ"
                         android:textSize="20dp"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:layout_centerHorizontal="true"/>
                     <ImageView
                         android:layout_width="30dp"
@@ -167,6 +170,7 @@
             </LinearLayout>
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_paper"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"/>
             <LinearLayout
@@ -188,35 +192,41 @@
                 android:gravity="center"
                 android:background="#DDF6FC"/>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchsanpham"
-                    android:layout_width="303dp"
+                    android:layout_width="290dp"
                     android:layout_height="39dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_weight="9"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/background_timkiem"
                     app:queryHint="Tìm kiếm" />
                 <ImageView
-                    android:layout_alignParentEnd="true"
                     android:layout_width="40dp"
                     android:layout_height="39dp"
                     android:padding="5dp"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="1"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_filter_alt_24"
                     android:layout_gravity="center"
                     android:background="@drawable/boder_filter"/>
-            </RelativeLayout>
+            </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvproduct"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="1000dp"
+                android:background="#F3F3F3"
                 tools:listitem="@layout/item_sanpham"/>
+
         </LinearLayout>
     </ScrollView>
 
