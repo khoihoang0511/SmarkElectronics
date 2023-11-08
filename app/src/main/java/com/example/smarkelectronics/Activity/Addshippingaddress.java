@@ -16,6 +16,6 @@ public class Addshippingaddress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addshippingaddress);
 
-        spinnerAddshippingaddress = findViewById(R.id.spinnerAddshippingaddress);
+
     }
 }

@@ -12,36 +12,45 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarkelectronics.R;
-import com.example.smarkelectronics.product;
+import com.example.smarkelectronics.Model.product;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.Viewholder> {
 
-    Context context ;
-    ArrayList<product> list;
+    private List<product> list;
+    private ItemclickListener itemclickListener;
 
-    public AdapterProduct(Context context, ArrayList<product> list) {
-        this.context = context;
+    public interface ItemclickListener{
+        void OnItemclick(int position);
+    }
+
+    public AdapterProduct(List<product> list, ItemclickListener itemclickListener) {
         this.list = list;
+        this.itemclickListener = itemclickListener;
     }
 
     @NonNull
     @Override
     public AdapterProduct.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_sanpham,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sanpham,parent,false);
         return new Viewholder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterProduct.Viewholder holder, int position) {
         holder.tvtensp.setText(list.get(position).getNameproduct());
-        holder.tvgiasp.setText(""+list.get(position).getPriceproduct());
+        DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
+        holder.tvgiasp.setText(decimalFormat.format(list.get(position).getPriceproduct()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, ""+list.get(position).getNameproduct(), Toast.LENGTH_SHORT).show();
+                if (itemclickListener != null){
+                    itemclickListener.OnItemclick(position);
+                }
             }
         });
     }
