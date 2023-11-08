@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#F5F5F5"
+        >
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/anh"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+     />
+
+        <TextView
+            android:id="@+id/tvTenSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="Tên sản phẩm"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/ivImage"
+            android:textColor="#FF5722"/>
+
+        <TextView
+            android:id="@+id/tvGiaSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:hint="$ 50.00"
+            android:textSize="20sp"
+            android:layout_below="@id/tvTenSP"
+            android:layout_toRightOf="@id/ivImage"/>
+
+        <TextView
+            android:id="@+id/tvSoLuong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:hint="Số lượng:2"
+            android:textSize="20sp"
+            android:layout_below="@id/tvGiaSP"
+            android:layout_toRightOf="@id/ivImage" />
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/tvSoLuong"
+            android:layout_marginLeft="60dp"
+            android:background="@drawable/bodergg"
+            app:backgroundTint="@null"
+            android:layout_marginTop="-43dp"
+            android:layout_toRightOf="@id/tvSoLuong"
+            android:text="Hủy đơn" />
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="#6E6D6D"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/ivImage"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="vertical"
+            android:layout_below="@+id/view"
+            android:gravity="center_vertical"
+            android:layout_alignParentEnd="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng thanhn toán: "
+                android:layout_toLeftOf="@+id/tvTongThanhToan"
+                android:layout_marginRight="5dp"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/tvTongThanhToan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="100$ "
+                android:layout_alignParentEnd="true"
+                android:textSize="20dp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
