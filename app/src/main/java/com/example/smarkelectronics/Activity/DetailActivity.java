@@ -3,19 +3,14 @@ package com.example.smarkelectronics.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.Spinner;
 
 import com.example.smarkelectronics.R;
 
-public class Addshippingaddress extends AppCompatActivity {
-
-    private Spinner spinnerAddshippingaddress;
+public class DetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addshippingaddress);
-
-
+        setContentView(R.layout.activity_detail);
     }
 }

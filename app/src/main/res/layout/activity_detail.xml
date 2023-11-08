@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    tools:context=".Activity.DetailActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Chi tiết đơn hàng"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="50dp"
+        android:background="#F5F5F5">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/anh"/>
+        <TextView
+            android:id="@+id/tvTenSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="Tên sản phẩm"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/image"
+            android:textColor="#FF5722"/>
+
+        <TextView
+            android:id="@+id/tvGiaSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:hint="$ 50.00"
+            android:textSize="20sp"
+            android:layout_below="@id/tvTenSP"
+            android:layout_toRightOf="@id/image"/>
+
+        <TextView
+            android:id="@+id/tvSoLuong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:hint="Số lượng:2"
+            android:textSize="20sp"
+            android:layout_below="@id/tvGiaSP"
+            android:layout_toRightOf="@id/image" />
+
+
+        <TextView
+            android:id="@+id/tvThongtin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông tin đơn hàng"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/image"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvTen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Bùi Hoàng Khôi"
+            android:layout_below="@id/tvThongtin"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/tvDiachi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:text="100 Tân Thới Nhất 13 P.Tân Thới Nhất Q.12 Tp Hồ Chí Minh "
+            android:layout_below="@id/tvTen"/>
+        <TextView
+            android:id="@+id/tvSĐT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="SĐT : 0352078904"
+            android:layout_below="@id/tvDiachi"/>
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="#6E6D6D"
+            android:layout_below="@+id/tvSĐT"
+            android:layout_marginTop="10dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="vertical"
+            android:layout_below="@+id/view"
+            android:gravity="center_vertical"
+            android:layout_alignParentEnd="true"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng thanhn toán: "
+                android:layout_toLeftOf="@+id/tvTongThanhToan"
+                android:layout_marginRight="5dp"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/tvTongThanhToan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="100$ "
+                android:layout_alignParentEnd="true"
+                android:textSize="20dp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
