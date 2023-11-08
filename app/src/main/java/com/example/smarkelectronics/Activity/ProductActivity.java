@@ -4,19 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.smarkelectronics.Adapter.SliderProductAdapter;
-import com.example.smarkelectronics.Model.product;
 import com.example.smarkelectronics.R;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +21,6 @@ public class ProductActivity extends AppCompatActivity {
     SliderProductAdapter sliderProductAdapter;
     List<Integer> list;
     int i = 1;
-    int position;
-
-    //list nhập dữ liệu từ fragmenthome
-    ArrayList<product> productlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +30,6 @@ public class ProductActivity extends AppCompatActivity {
         TextView tvmincount = findViewById(R.id.tvmincount);
         TextView tvquantityProduct = findViewById(R.id.tvquantityProduct);
         TextView tvmaxcount = findViewById(R.id.tvmaxcount);
-        TextView tvnameProduct = findViewById(R.id.tvnameProduct);
-        TextView tvPriceProduct = findViewById(R.id.tvPriceProduct);
-        TextView tvnote = findViewById(R.id.tvnote);
-        TextView tvback = findViewById(R.id.tvback);
 
         //hiển thị danh sách ảnh
         list = new ArrayList<>();
@@ -103,30 +91,6 @@ public class ProductActivity extends AppCompatActivity {
                 tvquantityProduct.setText(""+i);
             }
         });
-
-        //Nhận dữ liệu từ fragmenthome
-        Intent intent = getIntent();
-        if (intent != null){
-            position = intent.getIntExtra("position",0);
-            productlist = (ArrayList<product>) intent.getSerializableExtra("list");
-        }
-
-        tvnameProduct.setText(productlist.get(position).getNameproduct());
-        tvnote.setText(productlist.get(position).getNoteproduct());
-        DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
-        tvPriceProduct.setText(decimalFormat.format(productlist.get(position).getPriceproduct()));
-
-        tvback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-
-
-
-
 
 
 
