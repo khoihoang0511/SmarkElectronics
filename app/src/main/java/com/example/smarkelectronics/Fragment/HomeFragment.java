@@ -1,12 +1,11 @@
 package com.example.smarkelectronics.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -20,12 +19,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.smarkelectronics.Activity.CartActivity;
+import com.example.smarkelectronics.Activity.ProductActivity;
+import com.example.smarkelectronics.Activity.SignUpActivity;
 import com.example.smarkelectronics.Adapter.AdapterProduct;
 import com.example.smarkelectronics.Adapter.ImageSliderAdapter;
 import com.example.smarkelectronics.R;
 import com.example.smarkelectronics.api.API;
-import com.example.smarkelectronics.product;
-import com.mysql.cj.log.Log;
+import com.example.smarkelectronics.Model.product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,9 +70,11 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         viewPager2 = view.findViewById(R.id.view_paper);
         recyclerView = view.findViewById(R.id.rcvproduct);
+        ImageView imgcart = view.findViewById(R.id.imgcartt);
 
         list = new ArrayList<>();
 
@@ -153,6 +156,17 @@ public class HomeFragment extends Fragment {
         });
         //---- sự kiện indicator khi kéo trượt ảnh
 
+        imgcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), pA.class);
+//                startActivity(intent);
+            }
+        });
+
+
+
+
 
         return view;
     }
@@ -190,21 +204,28 @@ public class HomeFragment extends Fragment {
                             progressDialog.dismiss();
 
                         }else {
-                            Toast.makeText(getContext(), "looix", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "lỗi listproduct", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ArrayList<product>> call, Throwable t) {
-                        Toast.makeText(getContext(), "looix 2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "internet của bạn đang không ổn định", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         }).start();
-        adapterProduct = new AdapterProduct(getContext(),list);
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//        recyclerView.setLayoutManager(linearLayoutManager);
-//        recyclerView.setAdapter(adapterProduct);
+        adapterProduct = new AdapterProduct(list, new AdapterProduct.ItemclickListener() {
+            @Override
+            public void OnItemclick(int position) {
+                Intent intent = new Intent(getActivity(), ProductActivity.class);
+                    intent.putExtra("position", position);
+                    intent.putExtra("list",list);
+                startActivity(intent);
+            }
+        });
+
+        //hiển thị danh sách recyclerview
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(
                 2, StaggeredGridLayoutManager.VERTICAL
         );

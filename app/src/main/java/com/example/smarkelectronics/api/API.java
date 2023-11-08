@@ -1,6 +1,6 @@
 package com.example.smarkelectronics.api;
 
-import com.example.smarkelectronics.product;
+import com.example.smarkelectronics.Model.product;
 
 import java.util.ArrayList;
 

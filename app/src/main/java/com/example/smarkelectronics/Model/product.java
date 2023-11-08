@@ -1,6 +1,8 @@
-package com.example.smarkelectronics;
+package com.example.smarkelectronics.Model;
 
-public class product {
+import java.io.Serializable;
+
+public class product implements Serializable {
     int idproduct;
     String imgavatar;
     String nameproduct;
