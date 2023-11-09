@@ -17,6 +17,6 @@ public interface API {
     Call<ArrayList<Cart>> getlistcart() ;
 
     @GET("addcart.php")
-    Call<String> addcart(@Query("idproduct") int id,@Query("soluong") int soluong);
+    Call<String> addcart(@Query("soluong") int soluong,@Query("idproduct") int id);
 
 }

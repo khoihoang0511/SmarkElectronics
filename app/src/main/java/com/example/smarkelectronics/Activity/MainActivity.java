@@ -26,6 +26,17 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottmnavigationview);
 
         changfragment(new HomeFragment());
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.ichome){
+                    changfragment(new HomeFragment());
+                }else if(item.getItemId() == R.id.icfavorite){
+
+                }
+                return true;
+            }
+        });
 
 
 
