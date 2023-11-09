@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -46,17 +47,34 @@
                 </androidx.appcompat.widget.Toolbar>
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="553dp"
-                android:orientation="horizontal">
-
+                android:layout_height="match_parent">
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvcart"
                     android:layout_width="match_parent"
+                    android:layout_height="650dp"
+                    tools:listitem="@layout/item_donhangnew"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    tools:listitem="@layout/item_donhang"/>
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp">
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@drawable/shade_repair"
+                        android:elevation="10dp"
+                        android:gravity="center"
+                        android:text="Thêm tất cả vào giỏ hàng"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        app:cornerRadius="25px" />
+                </RelativeLayout>
+            </RelativeLayout>
             </LinearLayout>
-        </LinearLayout>
     </ScrollView>
 </LinearLayout>
