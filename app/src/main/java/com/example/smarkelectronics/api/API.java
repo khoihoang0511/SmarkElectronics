@@ -19,4 +19,7 @@ public interface API {
     @GET("addcart.php")
     Call<String> addcart(@Query("idproduct") int id,@Query("soluong") int soluong);
 
+    @GET("addDress.php")
+    Call<String> addDress(@Query("nameaddress") String nameaddress,@Query("phoneaddress") String phoneaddress,@Query("Phuong") String Phuong,@Query("Quan") String Quan,@Query("thanhpho") String thanhpho, @Query("chitiet") String chitiet);
+
 }
