@@ -10,7 +10,7 @@
         android:id="@+id/img_sp"
         android:layout_width="match_parent"
         android:layout_height="125dp"
-        android:src="@drawable/laptop_sp"/>
+        android:src="@drawable/mac"/>
     <TextView
         android:id="@+id/tvgiohang"
         android:layout_width="40dp"
