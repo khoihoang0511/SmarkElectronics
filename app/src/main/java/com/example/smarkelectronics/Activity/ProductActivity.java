@@ -180,13 +180,13 @@ public class ProductActivity extends AppCompatActivity {
                              progressDialog.show();
                          }
                      });
-                     Retrofit retrofit = new Retrofit.Builder()
+                      Retrofit retrofit = new Retrofit.Builder()
                              .baseUrl("https://khoihoang0511.000webhostapp.com/")
                              .addConverterFactory(GsonConverterFactory.create())
                              .build();
                      API api = retrofit.create(API.class);
                      quanlityproduct = Integer.parseInt(tvquantityProduct.getText().toString());
-                     Call<String> callproduct = api.addcart(productlist.get(position).getIdproduct(),quanlityproduct);
+                     Call<String> callproduct = api.addcart(quanlityproduct,productlist.get(position).getIdproduct());
                      callproduct.enqueue(new Callback<String>() {
                          @Override
                          public void onResponse(Call<String> call, Response<String> response) {
@@ -205,14 +205,5 @@ public class ProductActivity extends AppCompatActivity {
              }).start();
             }
         });
-
-
-
-
-
-
-
-
     }
-
 }
