@@ -35,6 +35,9 @@
             android:exported="false" />
         <activity
             android:name=".Activity.Addshippingaddress"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

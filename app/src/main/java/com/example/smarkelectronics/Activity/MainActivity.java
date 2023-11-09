@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.smarkelectronics.Fragment.HomeFragment;
@@ -32,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.ichome){
                     changfragment(new HomeFragment());
                 }else if(item.getItemId() == R.id.icfavorite){
-
+                    
+                }else if (item.getItemId() == R.id.icnotification){
+                    
+                } else if (item.getItemId() == R.id.icprofile) {
+                    
                 }
                 return true;
             }
