@@ -159,8 +159,8 @@ public class HomeFragment extends Fragment {
         imgcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), pA.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(),CartActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -210,7 +210,7 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<ArrayList<product>> call, Throwable t) {
-                        Toast.makeText(getContext(), "internet của bạn đang không ổn định", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Kết nối internet không ổn định", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -218,7 +218,7 @@ public class HomeFragment extends Fragment {
         adapterProduct = new AdapterProduct(list, new AdapterProduct.ItemclickListener() {
             @Override
             public void OnItemclick(int position) {
-                Intent intent = new Intent(getActivity(), ProductActivity.class);
+                Intent intent = new Intent(getActivity(),ProductActivity.class);
                     intent.putExtra("position", position);
                     intent.putExtra("list",list);
                 startActivity(intent);

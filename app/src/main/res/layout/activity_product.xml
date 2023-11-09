@@ -37,6 +37,7 @@
                         android:drawableRight="@drawable/ic_chevron_left_24"
                         />
                     <ImageView
+                        android:id="@+id/imgcartproduct"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/logo"
@@ -100,7 +101,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_alignParentEnd="true" />
                         <TextView
-                            android:id="@+id/tvquantityProduct"
+                            android:id="@+id/tvquantityProductt"
                             android:layout_width="60dp"
                             android:layout_height="40dp"
                             android:background="@drawable/background_quantity2"
@@ -120,12 +121,12 @@
                             android:textStyle="bold"
                             android:padding="6dp"
                             android:layout_marginRight="6dp"
-                            android:layout_toLeftOf="@id/tvquantityProduct" />
+                            android:layout_toLeftOf="@id/tvquantityProductt" />
                         <RelativeLayout
                             android:id="@+id/rll"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/tvquantityProduct">
+                            android:layout_below="@id/tvquantityProductt">
                             <TextView
                                 android:id="@+id/star"
                                 android:layout_width="wrap_content"
