@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:drawable="@drawable/custom_checked_checkbox" />
+            <item android:drawable="@drawable/custom_checkbox_tick" android:gravity="center" />
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:drawable="@drawable/custom_unchecked_checkbox" />
+        </layer-list>
+    </item>
+</selector>
