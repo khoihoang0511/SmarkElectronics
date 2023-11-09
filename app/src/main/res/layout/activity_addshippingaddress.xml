@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:hint="Họ và tên"/>
         <EditText
+            android:id="@+id/edtNameAddShip"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -60,6 +61,7 @@
             android:layout_height="wrap_content"
             android:hint="Địa chỉ"/>
         <EditText
+            android:id="@+id/edtAddressAddShip"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -79,6 +81,7 @@
             android:layout_height="wrap_content"
             android:hint="Số điện thoại"/>
         <EditText
+            android:id="@+id/edtPhoneNumber"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -97,6 +100,7 @@
             android:layout_height="wrap_content"
             android:hint="Thành phố"/>
         <EditText
+            android:id="@+id/edtCityAddShip"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -116,6 +120,7 @@
             android:layout_height="wrap_content"
             android:hint="Quận/Huyên"/>
         <EditText
+            android:id="@+id/edtDistrictAddShip"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -135,6 +140,7 @@
             android:layout_height="wrap_content"
             android:hint="Phường/Xã"/>
         <EditText
+            android:id="@+id/edtWardAddShip"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -142,6 +148,7 @@
             android:background="@null"/>
     </LinearLayout>
     <Button
+        android:id="@+id/btnSaveAddressAddShip"
         android:layout_width="335dp"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
