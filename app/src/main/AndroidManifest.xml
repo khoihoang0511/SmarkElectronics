@@ -16,6 +16,9 @@
         android:theme="@style/Theme.SmarkElectronics"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.Pay"
+            android:exported="false" />
+        <activity
             android:name=".Activity.OderActivity"
             android:exported="false" />
         <activity
@@ -25,7 +28,7 @@
             android:name=".Activity.PaymentSuccess"
             android:exported="false" />
         <activity
-            android:name=".Activity.Pay"
+            android:name=".Activity.Addshippingaddress"
             android:exported="false" />
         <activity
             android:name=".Activity.ProductActivity"
@@ -34,10 +37,7 @@
             android:name=".Activity.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Addshippingaddress"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.MainActivity"
+            android:name=".Activity.SelectAddress"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

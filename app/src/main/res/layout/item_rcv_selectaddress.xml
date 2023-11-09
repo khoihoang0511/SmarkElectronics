@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/SelectAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="60dp"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/txtNameSelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lê Đình Thái"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtDetailedAddressSelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="100 Tân Thới Nhất 13"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txtWardSelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="P.Tân Thới Nhất"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txtDistrictSelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Q.12"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txtCitySelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Hồ Chí Minh"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txtPhoneSelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="SĐT: 0352078904 "
+                android:textSize="14dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
