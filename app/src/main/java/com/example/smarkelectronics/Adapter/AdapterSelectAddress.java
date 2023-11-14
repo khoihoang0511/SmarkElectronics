@@ -8,15 +8,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smarkelectronics.Model.AddressModel;
 import com.example.smarkelectronics.Model.SelectAddressModel;
 import com.example.smarkelectronics.R;
 
 import java.util.List;
 
 public class AdapterSelectAddress extends RecyclerView.Adapter<AdapterSelectAddress.SelectAddressViewHolder>{
-    private List<SelectAddressModel> SelectAddressList;
+    private List<AddressModel> SelectAddressList;
 
-    public AdapterSelectAddress(List<SelectAddressModel> selectAddressList) {
+    public AdapterSelectAddress(List<AddressModel> selectAddressList) {
         SelectAddressList = selectAddressList;
     }
 
@@ -29,16 +30,16 @@ public class AdapterSelectAddress extends RecyclerView.Adapter<AdapterSelectAddr
 
     @Override
     public void onBindViewHolder(@NonNull SelectAddressViewHolder holder, int position) {
-        SelectAddressModel selectAddress = SelectAddressList.get(position);
+        AddressModel selectAddress = SelectAddressList.get(position);
         if (selectAddress == null){
             return;
         }
-        holder.txtNameSelectAddress.setText(selectAddress.getName());
-        holder.txtDetailedAddressSelectAddress.setText(selectAddress.getAddress());
-        holder.txtPhoneSelectAddress.setText(selectAddress.getPhonenumber());
-        holder.txtCitySelectAddress.setText(selectAddress.getCity());
-        holder.txtDistrictSelectAddress.setText(selectAddress.getDistrict());
-        holder.txtWardSelectAddress.setText(selectAddress.getWard());
+        holder.txtNameSelectAddress.setText(selectAddress.getNameaddress());
+        holder.txtDetailedAddressSelectAddress.setText(selectAddress.getChitiet());
+        holder.txtPhoneSelectAddress.setText(selectAddress.getPhoneaddress());
+        holder.txtCitySelectAddress.setText(selectAddress.getThanhpho());
+        holder.txtDistrictSelectAddress.setText(selectAddress.getQuan());
+        holder.txtWardSelectAddress.setText(selectAddress.getPhuong());
     }
 
     @Override

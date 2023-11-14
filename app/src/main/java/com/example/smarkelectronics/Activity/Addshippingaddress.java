@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -107,13 +108,16 @@ public class Addshippingaddress extends AppCompatActivity {
                                 public void onResponse(Call<String> call, Response<String> response) {
                                     if (response.isSuccessful() && response.body() != null){
                                         progressDialog.dismiss();
-                                        Toast.makeText(Addshippingaddress.this, "Thêm giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Addshippingaddress.this, "Lưu địa chỉ thành công", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Log.e("=------->",response.body()+"");
                                     }
                                 }
 
                                 @Override
                                 public void onFailure(Call<String> call, Throwable t) {
                                     Toast.makeText(Addshippingaddress.this, "Kết nối không ổn định", Toast.LENGTH_SHORT).show();
+                                    Log.e("=------->",t+"");
                                 }
                             });
                         }

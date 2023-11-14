@@ -1,5 +1,6 @@
 package com.example.smarkelectronics.api;
 
+import com.example.smarkelectronics.Model.AddressModel;
 import com.example.smarkelectronics.Model.Cart;
 import com.example.smarkelectronics.Model.product;
 
@@ -22,4 +23,6 @@ public interface API {
     @GET("addDress.php")
     Call<String> addDress(@Query("nameaddress") String nameaddress,@Query("phoneaddress") String phoneaddress,@Query("Phuong") String Phuong,@Query("Quan") String Quan,@Query("thanhpho") String thanhpho, @Query("chitiet") String chitiet);
 
+    @GET("getlistAddress.php")
+    Call<ArrayList<AddressModel>> getlistAddress();
 }
