@@ -3,11 +3,13 @@ package com.example.smarkelectronics.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -39,6 +41,15 @@ public class Addshippingaddress extends AppCompatActivity {
         EditText edtDistrictAddShip = findViewById(R.id.edtDistrictAddShip);
         EditText edtWardAddShip = findViewById(R.id.edtWardAddShip);
         Button btnSaveAddressAddShip = findViewById(R.id.btnSaveAddressAddShip);
+        ImageView imageBackAddShipPing = findViewById(R.id.imageBackAddShipPing);
+
+        imageBackAddShipPing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Addshippingaddress.this,Pay.class);
+                startActivity(intent);
+            }
+        });
 
         btnSaveAddressAddShip.setOnClickListener(new View.OnClickListener() {
             @Override
