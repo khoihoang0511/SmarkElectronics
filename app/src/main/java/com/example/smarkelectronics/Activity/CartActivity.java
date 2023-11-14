@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -44,6 +45,7 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         recyclerViewcart = findViewById(R.id.rcvcart);
         TextView tvback = findViewById(R.id.tvbackcart);
+        TextView btnthanhtoancart = findViewById(R.id.btnbuycart);
         tvtongthanhtoancart = findViewById(R.id.tvTongThanhToancart);
         list = new ArrayList<>();
 
@@ -51,6 +53,15 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        btnthanhtoancart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this, Pay.class);
+                startActivity(intent);
+
             }
         });
     }

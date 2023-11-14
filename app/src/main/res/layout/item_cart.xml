@@ -16,7 +16,7 @@
         android:layout_width="94dp"
         android:layout_height="120dp"
         android:layout_toRightOf="@id/cboxcart"
-        android:scaleType="fitXY"
+        android:scaleType="centerInside"
         android:src="@drawable/mac"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,9 +26,11 @@
         android:gravity="center">
         <TextView
             android:id="@+id/tvnamecart"
-            android:layout_width="match_parent"
+            android:layout_width="215dp"
+            android:layout_gravity="start"
             android:layout_height="wrap_content"
             android:text="Ipad Pro 11 2021"
+            android:inputType="textMultiLine"
             android:textColor="@color/black"
             android:textSize="14dp"/>
         <TextView
@@ -80,13 +82,17 @@
                 android:layout_toLeftOf="@id/tvquantitycart" />
         </LinearLayout>
     </LinearLayout>
+
     <Button
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/black"
         android:drawableBottom="@drawable/baseline_delete_outline_24"
-        app:cornerRadius="4dp"
-        android:layout_margin="10dp"
-        android:layout_alignParentEnd="true"/>
+        app:cornerRadius="4dp" />
 
 </RelativeLayout>
