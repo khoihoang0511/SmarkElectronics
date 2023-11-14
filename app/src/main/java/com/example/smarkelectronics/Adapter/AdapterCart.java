@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.smarkelectronics.Model.Cart;
 import com.example.smarkelectronics.R;
 
@@ -51,10 +52,13 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
 
     @Override
     public void onBindViewHolder(@NonNull AdapterCart.ViewHodel holder, int position) {
-        holder.tvnamecart.setText(list.get(position).getNameproduct());
+        int vitricart = position;
+        holder.tvnamecart.setText(list.get(vitricart).getNameproduct());
         DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
-        holder.tvpricecart.setText(decimalFormat.format(list.get(position).getPriceproduct()));
-        holder.tvquantityCart.setText(""+list.get(position).getQuanlitycart());
+        Glide.with(context)
+                .load(list.get(vitricart).getImgavatar()).into(holder.imgavatar);
+        holder.tvpricecart.setText(decimalFormat.format(list.get(vitricart).getPriceproduct()));
+        holder.tvquantityCart.setText(""+list.get(vitricart).getQuanlitycart());
 
 
         holder.tvmincountcart.setOnClickListener(new View.OnClickListener() {
@@ -81,12 +85,12 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
             @Override
             public void onClick(View v) {
                 if (holder.cboxcart.isChecked()){
-                    int gia = list.get(position).getPriceproduct();
+                    int gia = list.get(vitricart).getPriceproduct();
                     int quanlity = Integer.parseInt(holder.tvquantityCart.getText().toString());
                     tongthanhtoan +=(gia*quanlity);
                     onClickCartCheckbox.clickcheckBox(tongthanhtoan);
                 }else {
-                    int gia = list.get(position).getPriceproduct();
+                    int gia = list.get(vitricart).getPriceproduct();
                     int quanlity = Integer.parseInt(holder.tvquantityCart.getText().toString());
                     tongthanhtoan -= (gia*quanlity);
                     onClickCartCheckbox.clickcheckBox(tongthanhtoan);
