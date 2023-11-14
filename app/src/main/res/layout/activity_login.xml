@@ -19,10 +19,11 @@
             android:src="@drawable/img1"
             android:layout_marginLeft="30dp"/>
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/img_slider"/>
+            android:layout_width="63.96dp"
+            android:layout_height="63.96dp"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo1"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

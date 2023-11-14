@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.smarkelectronics.Adapter.AdapterSelectAddress;
 import com.example.smarkelectronics.Model.SelectAddressModel;
@@ -22,7 +25,15 @@ public class SelectAddress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_address);
 
+        TextView tvback = findViewById(R.id.tvback);
 
+        tvback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SelectAddress.this, Pay.class);
+                startActivity(intent);
+            }
+        });
 
 
         rcvSelectAddress = findViewById(R.id.rcvSelectAddress);
