@@ -1,5 +1,6 @@
 package com.example.smarkelectronics.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,15 +9,18 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.smarkelectronics.R;
 
 import java.util.List;
 
 public class SliderProductAdapter extends RecyclerView.Adapter<SliderProductAdapter.ViewHolder> {
-    List<Integer> list;
+    List<String> list;
+    Context context;
 
-    public SliderProductAdapter(List<Integer> list) {
+    public SliderProductAdapter(List<String> list, Context context) {
         this.list = list;
+        this.context = context;
     }
 
     @NonNull
@@ -28,7 +32,8 @@ public class SliderProductAdapter extends RecyclerView.Adapter<SliderProductAdap
 
     @Override
     public void onBindViewHolder(@NonNull SliderProductAdapter.ViewHolder holder, int position) {
-        holder.imageView.setImageResource(list.get(position));
+        Glide.with(context)
+                .load(list.get(position)).into(holder.imageView);
     }
 
     @Override

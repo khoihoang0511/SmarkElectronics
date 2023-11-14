@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -224,20 +225,24 @@ public class HomeFragment extends Fragment {
                 });
             }
         }).start();
-        adapterProduct = new AdapterProduct(list, new AdapterProduct.ItemclickListener() {
+        adapterProduct = new AdapterProduct(list, getContext(), new AdapterProduct.ItemclickListener() {
             @Override
             public void OnItemclick(int position) {
                 Intent intent = new Intent(getActivity(),ProductActivity.class);
-                    intent.putExtra("position", position);
-                    intent.putExtra("list",list);
+                intent.putExtra("position", position);
+                intent.putExtra("list",list);
                 startActivity(intent);
             }
         });
 
-        //hiển thị danh sách recyclerview
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(
-                2, StaggeredGridLayoutManager.VERTICAL
-        );
+                //hiển thị danh sách recyclerview
+//                StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(
+//                2, StaggeredGridLayoutManager.VERTICAL
+//        );
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(adapterProduct);
+        int numberOfColumns = 2; // Điều này có thể được thay đổi thành số cột bạn muốn
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), numberOfColumns);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapterProduct);
     }
