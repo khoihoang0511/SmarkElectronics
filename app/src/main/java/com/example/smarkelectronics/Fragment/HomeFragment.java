@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment {
 
     ImageSliderAdapter imageSliderAdapter;
     ViewPager2 viewPager2;
-
+    private ViewPager2.OnPageChangeCallback onPageChangeCallback;
 
 
 
@@ -62,6 +63,7 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
     private int currentPage = 0;
     private final Handler handler = new Handler();
@@ -78,6 +80,7 @@ public class HomeFragment extends Fragment {
         ImageView imgcart = view.findViewById(R.id.imgcartt);
 
         list = new ArrayList<>();
+
 
 
         //---hiển thị danh sách ảnh
@@ -142,7 +145,7 @@ public class HomeFragment extends Fragment {
         ));
 
         // Đặt sự kiện trượt để cập nhật indicator
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        onPageChangeCallback = new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
@@ -154,7 +157,7 @@ public class HomeFragment extends Fragment {
                     ));
                 }
             }
-        });
+        };
         //---- sự kiện indicator khi kéo trượt ảnh
 
         imgcart.setOnClickListener(new View.OnClickListener() {
@@ -166,16 +169,22 @@ public class HomeFragment extends Fragment {
         });
 
 
-
-
-
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        viewPager2.unregisterOnPageChangeCallback(onPageChangeCallback);
     }
 
     //hiểnr thị dữ liệu trên php
     @Override
     public void onResume() {
         super.onResume();
+
+        viewPager2.registerOnPageChangeCallback(onPageChangeCallback);
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -236,7 +245,7 @@ public class HomeFragment extends Fragment {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), numberOfColumns);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapterProduct);
-
-
     }
+
+
 }

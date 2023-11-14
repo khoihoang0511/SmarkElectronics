@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.smarkelectronics.Fragment.HomeFragment;
+import com.example.smarkelectronics.Fragment.fragment_favorite;
+import com.example.smarkelectronics.Fragment.fragment_notification_new;
+import com.example.smarkelectronics.Fragment.fragment_profile_new;
 import com.example.smarkelectronics.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.ichome){
                     changfragment(new HomeFragment());
                 }else if(item.getItemId() == R.id.icfavorite){
-                    
+                    changfragment(new fragment_favorite());
                 }else if (item.getItemId() == R.id.icnotification){
-                    
-                } else if (item.getItemId() == R.id.icprofile) {
-                    
+                    changfragment(new fragment_notification_new());
+                }else if (item.getItemId() == R.id.icprofile) {
+                    changfragment(new fragment_profile_new());
                 }
                 return true;
             }
