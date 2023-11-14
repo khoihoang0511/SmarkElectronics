@@ -19,6 +19,8 @@ public interface API {
     @GET("addcart.php")
     Call<String> addcart(@Query("soluong") int soluong,@Query("idproduct") int id);
 
+    @GET("addcustomer.php")
+    Call<String> addcustomer(@Query("namecustomer") String namecustomer,@Query("email") String email,@Query("passwordcustomer") String passwordcustomer);
     @GET("addDress.php")
     Call<String> addDress(@Query("nameaddress") String nameaddress,@Query("phoneaddress") String phoneaddress,@Query("Phuong") String Phuong,@Query("Quan") String Quan,@Query("thanhpho") String thanhpho, @Query("chitiet") String chitiet);
 
