@@ -1,5 +1,6 @@
 package com.example.smarkelectronics.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.smarkelectronics.R;
 import com.example.smarkelectronics.Model.product;
 
@@ -21,14 +24,18 @@ import java.util.List;
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.Viewholder> {
 
     private List<product> list;
+    private Context context;
     private ItemclickListener itemclickListener;
+
+
 
     public interface ItemclickListener{
         void OnItemclick(int position);
     }
 
-    public AdapterProduct(List<product> list, ItemclickListener itemclickListener) {
+    public AdapterProduct(List<product> list, Context context, ItemclickListener itemclickListener) {
         this.list = list;
+        this.context = context;
         this.itemclickListener = itemclickListener;
     }
 
@@ -41,15 +48,20 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.Viewhold
 
     @Override
     public void onBindViewHolder(@NonNull AdapterProduct.Viewholder holder, int position) {
-        holder.tvtensp.setText(list.get(position).getNameproduct());
+        int vitri = position;
+        holder.tvtensp.setText(list.get(vitri).getNameproduct());
         DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
-        holder.tvgiasp.setText(decimalFormat.format(list.get(position).getPriceproduct()));
+
+        Glide.with(context)
+                .load(list.get(vitri).getImgavatar()).into(holder.img_sp);
+
+        holder.tvgiasp.setText(decimalFormat.format(list.get(vitri).getPriceproduct()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (itemclickListener != null){
-                    itemclickListener.OnItemclick(position);
+                    itemclickListener.OnItemclick(vitri);
                 }
             }
         });

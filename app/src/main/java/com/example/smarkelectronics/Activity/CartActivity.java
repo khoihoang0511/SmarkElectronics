@@ -17,6 +17,7 @@ import com.example.smarkelectronics.Model.product;
 import com.example.smarkelectronics.R;
 import com.example.smarkelectronics.api.API;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -26,6 +27,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CartActivity extends AppCompatActivity {
+
+
+    TextView tvtongthanhtoancart;
 
     //hiển thị dữ liệu giỏ hàng từ php //api
     private ProgressDialog progressDialog;
@@ -40,6 +44,7 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         recyclerViewcart = findViewById(R.id.rcvcart);
         TextView tvback = findViewById(R.id.tvbackcart);
+        tvtongthanhtoancart = findViewById(R.id.tvTongThanhToancart);
         list = new ArrayList<>();
 
         tvback.setOnClickListener(new View.OnClickListener() {
@@ -83,12 +88,14 @@ public class CartActivity extends AppCompatActivity {
 
                         }else {
                             Toast.makeText(CartActivity.this, "Lỗi listCart", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ArrayList<Cart>> call, Throwable t) {
-                        Toast.makeText(CartActivity.this, "Kết nối intener không ổn định", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(CartActivity.this, "Kết nối intener không ổn định", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 });
             }
@@ -97,5 +104,13 @@ public class CartActivity extends AppCompatActivity {
         adapterCart = new AdapterCart(this,list);
         recyclerViewcart.setLayoutManager(linearLayoutManager);
         recyclerViewcart.setAdapter(adapterCart);
+        adapterCart.setOnClickProduct(new AdapterCart.OnClickCartCheckbox() {
+            @Override
+            public void clickcheckBox(int tongtien) {
+                int tongtiencart = tongtien;
+                DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
+                tvtongthanhtoancart.setText(decimalFormat.format(tongtiencart));
+            }
+        });
     }
 }

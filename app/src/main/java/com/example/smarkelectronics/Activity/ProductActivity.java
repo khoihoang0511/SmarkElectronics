@@ -35,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProductActivity extends AppCompatActivity {
 
     SliderProductAdapter sliderProductAdapter;
-    List<Integer> list;
+    List<String> list;
     int i = 1;
     int position;
 
@@ -65,33 +65,28 @@ public class ProductActivity extends AppCompatActivity {
         Button btnsave = findViewById(R.id.btnsave);
         ImageView imgcartproduct = findViewById(R.id.imgcartproduct);
 
+//Nhận dữ liệu từ fragmenthome
+        Intent intent = getIntent();
+        if (intent != null){
+            position = intent.getIntExtra("position",0);//nếu không có dữ liệu thì mặc định là 0
+            productlist = (ArrayList<product>) intent.getSerializableExtra("list");
+        }
 
-        imgcartproduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentproduct = new Intent(ProductActivity.this,CartActivity.class);
-                startActivity(intentproduct);
-            }
-        });
-
-
-
-        btnsave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
+        tvnameProduct.setText(productlist.get(position).getNameproduct());
+        tvnote.setText(productlist.get(position).getNoteproduct());
+        DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
+        tvPriceProduct.setText(decimalFormat.format(productlist.get(position).getPriceproduct()));
 
         //hiển thị danh sách ảnh
         list = new ArrayList<>();
-        list.add(R.drawable.mac);
-        list.add(R.drawable.honor);
-        list.add(R.drawable.laptop_sp);
+        list.add(productlist.get(position).getImgavatar());
+        list.add(productlist.get(position).getImgavatar2());
+        list.add(productlist.get(position).getImgavatar3());
 
-        sliderProductAdapter = new SliderProductAdapter(list);
+        sliderProductAdapter = new SliderProductAdapter(list,this);
         viewPagerProduct.setAdapter(sliderProductAdapter);
+
+
 
         //Hiển thị indicator slider
         LinearLayout linearLayoutProduct = findViewById(R.id.indicator_layoutproduct);
@@ -128,6 +123,24 @@ public class ProductActivity extends AppCompatActivity {
         });
 
 
+        imgcartproduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentproduct = new Intent(ProductActivity.this,CartActivity.class);
+                startActivity(intentproduct);
+            }
+        });
+
+
+
+        btnsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
         tvmincount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,17 +158,7 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
 
-        //Nhận dữ liệu từ fragmenthome
-        Intent intent = getIntent();
-        if (intent != null){
-            position = intent.getIntExtra("position",0);//nếu không có dữ liệu thì mặc định là 0
-            productlist = (ArrayList<product>) intent.getSerializableExtra("list");
-        }
 
-        tvnameProduct.setText(productlist.get(position).getNameproduct());
-        tvnote.setText(productlist.get(position).getNoteproduct());
-        DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
-        tvPriceProduct.setText(decimalFormat.format(productlist.get(position).getPriceproduct()));
 
         tvback.setOnClickListener(new View.OnClickListener() {
             @Override

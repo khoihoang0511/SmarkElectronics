@@ -240,7 +240,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1000dp"
                 android:paddingTop="10dp"
-                android:paddingBottom="10dp"
                 android:background="#F3F3F3"
                 tools:listitem="@layout/item_sanpham"/>
 

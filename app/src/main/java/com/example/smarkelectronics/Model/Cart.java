@@ -3,7 +3,7 @@ package com.example.smarkelectronics.Model;
 public class Cart {
     int idcart;
     String nameproduct;
-    int priceproduct ;
+    int priceproduct;
     int quanlitycart;
 
     public Cart(int idcart, String nameproduct, int priceproduct, int quanlitycart) {
