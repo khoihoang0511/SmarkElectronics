@@ -179,7 +179,7 @@
                 android:orientation="horizontal"
                 android:layout_alignParentBottom="true">
                 <Button
-                    android:id="@+id/btnsave"
+                    android:id="@+id/btnfavorite"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:elevation="6dp"
