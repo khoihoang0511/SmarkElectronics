@@ -5,23 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:background="#F3F3F3"
     tools:context=".Fragment.fragment_favorite">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -33,7 +30,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Thông báo"
+                            android:text="Sản phẩm yêu thích"
                             android:textSize="20dp"
                             android:textStyle="bold"
                             android:layout_marginTop="5dp"
@@ -48,23 +45,32 @@
                 </androidx.appcompat.widget.Toolbar>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    >
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcvfavorite"
                         android:layout_width="match_parent"
-                        android:layout_height="650dp"
-                        tools:listitem="@layout/item_donhangnew" />
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_donhangnew"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        >
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp"
+                            android:backgroundTint="@color/black"
+                            android:text="Thêm tất cả vào giỏ hàng"
+                            android:textSize="20dp"
+                            app:cornerRadius="10dp"
+                            android:layout_marginBottom="20dp"/>
+                    </RelativeLayout>
+
                 </RelativeLayout>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:backgroundTint="@color/black"
-                    android:text="Thêm tất cả vào giỏ hàng"
-                    android:textSize="20dp"
-                    app:cornerRadius="10dp" />
             </LinearLayout>
-        </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

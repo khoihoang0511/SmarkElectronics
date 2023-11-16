@@ -212,7 +212,6 @@ public class HomeFragment extends Fragment {
                             list.addAll(listproduct);
                             adapterProduct.notifyDataSetChanged();
                             progressDialog.dismiss();
-
                         }else {
                             Toast.makeText(getContext(), "lỗi listproduct", Toast.LENGTH_SHORT).show();
                         }

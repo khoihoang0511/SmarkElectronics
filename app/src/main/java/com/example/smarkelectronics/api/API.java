@@ -1,6 +1,7 @@
 package com.example.smarkelectronics.api;
 
 import com.example.smarkelectronics.Model.Cart;
+import com.example.smarkelectronics.Model.Favorite;
 import com.example.smarkelectronics.Model.product;
 
 import java.util.ArrayList;
@@ -21,5 +22,11 @@ public interface API {
 
     @GET("addDress.php")
     Call<String> addDress(@Query("nameaddress") String nameaddress,@Query("phoneaddress") String phoneaddress,@Query("Phuong") String Phuong,@Query("Quan") String Quan,@Query("thanhpho") String thanhpho, @Query("chitiet") String chitiet);
+
+    @GET("addfavorite.php")
+    Call<String> addfavorite(@Query("idproduct") int idproduct, @Query("idcustomer") int idcustomer);
+
+    @GET("getlistfavorite.php")
+    Call<ArrayList<Favorite>> getlistfavorite();
 
 }
