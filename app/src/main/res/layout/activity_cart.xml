@@ -49,12 +49,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dp">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvcart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_cart"
-            android:layout_marginBottom="200dp"/>
+            android:layout_marginBottom="200dp"
+            tools:listitem="@layout/item_cart" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

@@ -62,7 +62,7 @@ public class ProductActivity extends AppCompatActivity {
         TextView tvnote = findViewById(R.id.tvnote);
         TextView tvback = findViewById(R.id.tvback);
         TextView tvaddcart = findViewById(R.id.btnaddCart);
-        Button btnsave = findViewById(R.id.btnsave);
+        Button btnfavorite = findViewById(R.id.btnfavorite);
         ImageView imgcartproduct = findViewById(R.id.imgcartproduct);
 
 //Nhận dữ liệu từ fragmenthome
@@ -133,10 +133,45 @@ public class ProductActivity extends AppCompatActivity {
 
 
 
-        btnsave.setOnClickListener(new View.OnClickListener() {
+        btnfavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        handlerproduct.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialog = new ProgressDialog(ProductActivity.this);
+                                progressDialog.setMessage("Loanding");
+                                progressDialog.setCancelable(false);
+                                progressDialog.show();
+                            }
+                        });
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl("https://khoihoang0511.000webhostapp.com/")
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+                        API api = retrofit.create(API.class);
+                        Call<String> callfavorite = api.addfavorite(productlist.get(position).getIdproduct(),1);
+                        callfavorite.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+                                if (response.isSuccessful() && response.body() != null){
+                                    progressDialog.dismiss();
+                                    Toast.makeText(ProductActivity.this, "Đã thêm vào danh mục yêu thích", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(ProductActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                                }
+                            }
 
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+                                Toast.makeText(ProductActivity.this, "Kết nối không ổn định", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }).start();
             }
         });
 
