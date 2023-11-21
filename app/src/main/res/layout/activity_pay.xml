@@ -14,6 +14,7 @@
         android:orientation="horizontal"
         android:gravity="center">
         <ImageView
+            android:id="@+id/imgBackPay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_arrow_back_ios_new_24"
@@ -47,6 +48,7 @@
             android:orientation="vertical"
             android:padding="20dp">
             <TextView
+                android:id="@+id/txtNamePay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lê Đình Thái"
@@ -54,17 +56,14 @@
                 android:textColor="@color/black"
                 android:textSize="18dp"/>
             <TextView
+                android:id="@+id/txtAddressPay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="100 Tân Thới Nhất 13 P.Tân Thới Nhất Q.12 Tp "
                 android:layout_marginTop="10dp"
                 android:textSize="14dp"/>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Hồ Chí Minh"
-                android:textSize="14dp"/>
-            <TextView
+                android:id="@+id/txtSdtPay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="SĐT: 0352078904 "
@@ -157,6 +156,7 @@
             android:textSize="18dp"/>
     </LinearLayout>
     <Button
+        android:id="@+id/btnPay"
         android:layout_width="335dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"

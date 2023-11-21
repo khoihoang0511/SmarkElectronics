@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnDeleMyshippingaddress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/black"
+            android:drawableBottom="@drawable/baseline_delete_outline_24"
+            app:cornerRadius="4dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="60dp"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/txtNameSelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lê Đình Thái"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtDetailedAddressSelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="100 Tân Thới Nhất 13"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txtWardSelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="P.Tân Thới Nhất"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txtDistrictSelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Q.12"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txtCitySelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Hồ Chí Minh"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txtPhoneSelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="SĐT: 0352078904 "
+                android:textSize="14dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
