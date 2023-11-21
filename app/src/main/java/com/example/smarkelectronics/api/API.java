@@ -25,4 +25,10 @@ public interface API {
 
     @GET("getlistAddress.php")
     Call<ArrayList<AddressModel>> getlistAddress();
+
+    @GET("deleteItemInCart.php")
+    Call<String> delete_ItemInCare(@Query("IDCART")Integer idcart);
+
+    @GET("deleteMyshippingaddress.php")
+    Call<String> delete_ItemInAddress(@Query("IDAddress")Integer idaddress);
 }

@@ -41,6 +41,7 @@
         android:layout_gravity="center"
         android:textSize="18sp" />
     <Button
+        android:id="@+id/btnGoBackToTheMainPage"
         android:layout_width="335dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"

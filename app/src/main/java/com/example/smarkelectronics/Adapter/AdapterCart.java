@@ -1,22 +1,35 @@
 package com.example.smarkelectronics.Adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.smarkelectronics.Activity.CartActivity;
 import com.example.smarkelectronics.Model.Cart;
 import com.example.smarkelectronics.R;
+import com.example.smarkelectronics.api.API;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
 
@@ -25,7 +38,8 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
 
     int tongthanhtoan = 0;
 
-
+    private ProgressDialog progressDialog;
+    private Handler handlercart = new Handler();
 
 
     public AdapterCart(Context context, ArrayList<Cart> list) {
@@ -71,6 +85,13 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
                 }
             }
         });
+
+        holder.btnDeleteCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteItemCart(list.get(holder.getAdapterPosition()).getIdcart());
+            }
+        });
         holder.tvmaxcountcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +119,45 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
             }
         });
     }
+    private void deleteItemCart(Integer id){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                handlercart.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog = new ProgressDialog(context);
+                        progressDialog.setMessage("Loading");
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+                    }
+                });
+
+                Retrofit retrofit_catalog = new Retrofit.Builder()
+                        .baseUrl("https://khoihoang0511.000webhostapp.com/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                API api_cart = retrofit_catalog.create(API.class);
+                Call<String> call = api_cart.delete_ItemInCare(id);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+                        notifyDataSetChanged();
+                        progressDialog.cancel();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                       notifyDataSetChanged();
+                        progressDialog.cancel();
+                    }
+                });
+            }
+        }).start();
+    }
 
     @Override
     public int getItemCount() {
@@ -108,8 +168,10 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
         CheckBox cboxcart;
         ImageView imgavatar;
         TextView tvnamecart , tvpricecart, tvquantityCart, tvmaxcountcart, tvmincountcart;
+        Button btnDeleteCart;
         public ViewHodel(@NonNull View itemView) {
             super(itemView);
+            btnDeleteCart = itemView.findViewById(R.id.btnDeleteCart);
             cboxcart = itemView.findViewById(R.id.cboxcart);
             imgavatar = itemView.findViewById(R.id.imgavatar);
             tvnamecart = itemView.findViewById(R.id.tvnamecart);
