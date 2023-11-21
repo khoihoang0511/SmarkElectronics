@@ -25,13 +25,16 @@ public class AdapterAddress extends RecyclerView.Adapter<AdapterAddress.Viewhold
     private ItemclickListenerAddress itemclickListenerAddress;
 
     public interface ItemclickListenerAddress{
-        void OnItemclickAddress(int position);
+        void OnItemclickAddress(String name, String adress, String sdt);
     }
 
-    public AdapterAddress(List<AddressModel> list, Context context, ItemclickListenerAddress itemclickListenerAddress) {
+    public void OnItemclickListenerAddress(ItemclickListenerAddress itemclickListenerAddress){
+        this.itemclickListenerAddress = itemclickListenerAddress;
+    }
+
+    public AdapterAddress(List<AddressModel> list, Context context) {
         this.list = list;
         this.context = context;
-        this.itemclickListenerAddress = itemclickListenerAddress;
     }
 
     @NonNull
@@ -51,11 +54,15 @@ public class AdapterAddress extends RecyclerView.Adapter<AdapterAddress.Viewhold
         holder.txtDistrictSelectAddress.setText(list.get(vitri).getQuan());
         holder.txtCitySelectAddress.setText(list.get(vitri).getThanhpho());
         holder.txtPhoneSelectAddress.setText(list.get(vitri).getPhoneaddress());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.SelectAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (itemclickListenerAddress != null){
-                    itemclickListenerAddress.OnItemclickAddress(vitri);
+                    itemclickListenerAddress.OnItemclickAddress(list.get(position).getNameaddress(),list.get(position).getChitiet()+", " +
+                            list.get(position).getPhuong() + "," +
+                            list.get(position).getQuan() + "," +
+                            list.get(position).getThanhpho(),
+                            list.get(position).getPhoneaddress());
                 }
             }
         });
