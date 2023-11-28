@@ -27,144 +27,155 @@
             android:textStyle="bold"
             android:paddingLeft="110dp"/>
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/txtAddnNewAddress"
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Địa chỉ giao hàng"
-            android:drawableEnd="@drawable/baseline_border_color_24"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/SelectAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
-            <TextView
-                android:id="@+id/txtNamePay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lê Đình Thái"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="18dp"/>
-            <TextView
-                android:id="@+id/txtAddressPay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="100 Tân Thới Nhất 13 P.Tân Thới Nhất Q.12 Tp "
-                android:layout_marginTop="10dp"
-                android:textSize="14dp"/>
-            <TextView
-                android:id="@+id/txtSdtPay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="SĐT: 0352078904 "
-                android:textSize="14dp"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/baseline_navigate_next"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="99dp"
-            android:layout_height="120dp"
-            android:src="@drawable/laptop_sp"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:orientation="vertical">
-
-            <TextView
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txtAddnNewAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Địa chỉ giao hàng"
+                    android:drawableEnd="@drawable/baseline_border_color_24"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/SelectAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+                    <TextView
+                        android:id="@+id/txtNamePay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"/>
+                    <TextView
+                        android:id="@+id/txtAddressPay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="14dp"/>
+                    <TextView
+                        android:id="@+id/txtSdtPay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14dp"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/baseline_navigate_next"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvPayProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Laptop"
-                android:textSize="14dp"/>
-            <TextView
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Payment"
+                    android:drawableEnd="@drawable/baseline_border_color_24"/>
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="999999"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="16dp"/>
-            <TextView
+                android:layout_marginTop="50dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Delivery method"
+                    android:drawableEnd="@drawable/baseline_border_color_24"/>
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="x9999"
-                android:textSize="14dp"/>
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:id="@+id/txtTotalcostofgoods"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Tổng tiền hàng:"
+                    android:textSize="18dp"
+                    android:layout_alignParentTop="true"/>
+                <TextView
+                    android:id="@+id/txtTotalcostofgoodsDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="0"
+                    android:textSize="18dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/txtTotalcostofgoods"/>
+                <TextView
+                    android:id="@+id/txtTransportfee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Phí vận chuyển:"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/txtTotalcostofgoods"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:id="@+id/txtTransportfeeDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="0"
+                    android:textSize="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/txtTransportfee"
+                    android:layout_below="@+id/txtTotalcostofgoodsDisplay"/>
+                <TextView
+                    android:id="@+id/txtTotalsettlement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Tổng thành toán:"
+                    android:layout_below="@+id/txtTransportfee"
+                    android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/txtTotalsettlementDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="0"
+                    android:textSize="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/txtTotalsettlement"
+                    android:layout_below="@+id/txtTransportfeeDisplay"/>
+            </RelativeLayout>
+            <Button
+                android:id="@+id/btnPay"
+                android:layout_width="335dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                app:backgroundTint="@null"
+                android:background="@drawable/boder"
+                android:text="Thanh toán"
+                android:layout_gravity="center"
+                android:textSize="18sp" />
         </LinearLayout>
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Payment"
-            android:drawableEnd="@drawable/baseline_border_color_24"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Delivery method"
-            android:drawableEnd="@drawable/baseline_border_color_24"/>
-    </RelativeLayout>
+    </ScrollView>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="30dp"
-        android:padding="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Tổng tiền hàng:"
-            android:textSize="18dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Phí vận chuyển"
-            android:layout_marginTop="10dp"
-            android:textSize="18dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Tổng thành toán:"
-            android:layout_marginTop="10dp"
-            android:textSize="18dp"/>
-    </LinearLayout>
-    <Button
-        android:id="@+id/btnPay"
-        android:layout_width="335dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        app:backgroundTint="@null"
-        android:background="@drawable/boder"
-        android:text="Thanh toán"
-        android:layout_gravity="center"
-        android:textSize="18sp" />
 
 
 </LinearLayout>

@@ -17,11 +17,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.smarkelectronics.Activity.CartActivity;
+import com.example.smarkelectronics.Activity.CategoryActivity;
 import com.example.smarkelectronics.Activity.ProductActivity;
 import com.example.smarkelectronics.Activity.SignUpActivity;
 import com.example.smarkelectronics.Adapter.AdapterProduct;
@@ -46,17 +49,16 @@ public class HomeFragment extends Fragment {
     ViewPager2 viewPager2;
     private ViewPager2.OnPageChangeCallback onPageChangeCallback;
 
-
-
-
     // Api
     private ProgressDialog progressDialog;
     private Handler handlerproduct = new Handler();
 
     AdapterProduct adapterProduct;
 
-    ArrayList<product> list;
+    ArrayList<product> listproduct;
+    ArrayList<product> all;
     RecyclerView recyclerView;
+    SearchView searchsanpham;
 
 
     @Override
@@ -77,10 +79,20 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         viewPager2 = view.findViewById(R.id.view_paper);
         recyclerView = view.findViewById(R.id.rcvproduct);
+        searchsanpham = view.findViewById(R.id.searchsanpham);
         ImageView imgcart = view.findViewById(R.id.imgcartt);
 
-        list = new ArrayList<>();
+        Button btnAllCategory = view.findViewById(R.id.btnAllCategory);
+        Button btnPhoneCategory = view.findViewById(R.id.btnPhoneCategory);
+        Button btnLaptopCategory = view.findViewById(R.id.btnLaptopCategory);
+        Button btnIpadCategory = view.findViewById(R.id.btnIpadCategory);
+        Button btnEarphoneCategory = view.findViewById(R.id.btnEarphoneCategory);
+        Button btnScreenCategory = view.findViewById(R.id.btnScreenCategory);
+        Button btnAccessoryCategory = view.findViewById(R.id.btnAccessoryCategory);
 
+
+        listproduct = new ArrayList<>();
+        all = new ArrayList<>();
 
 
         //---hiển thị danh sách ảnh
@@ -168,7 +180,109 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        adapterProduct = new AdapterProduct(listproduct, getContext(), new AdapterProduct.ItemclickListener() {
+            @Override
+            public void OnItemclick(int position) {
+                Intent intent = new Intent(getActivity(),ProductActivity.class);
+                intent.putExtra("position", position);
+                intent.putExtra("listproduct",listproduct);
+                startActivity(intent);
+            }
+        });
 
+        //hiển thị danh sách recyclerview
+//                StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(
+//                2, StaggeredGridLayoutManager.VERTICAL
+//        );
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(adapterProduct);
+        int numberOfColumns = 2; // Điều này có thể được thay đổi thành số cột bạn muốn
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), numberOfColumns);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapterProduct);
+
+        searchsanpham.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    listproduct.clear();
+                    listproduct.addAll(all);
+                    adapterProduct.notifyDataSetChanged();
+                }else {
+                    listproduct.clear();
+                    for (product th: all){
+                        if (th.getNameproduct().contains(newText)){
+                            listproduct.add(th);
+                        }
+                    }
+                    adapterProduct.notifyDataSetChanged();
+                }
+                return true;
+            }
+        });
+
+
+        btnAllCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CategoryActivity.class);
+                intent.putExtra("tendanhmuc",btnAllCategory.getText().toString());
+                startActivity(intent);
+            }
+        });
+        btnPhoneCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CategoryActivity.class);
+                intent.putExtra("tendanhmuc",btnPhoneCategory.getText().toString());
+                startActivity(intent);
+            }
+        });
+        btnLaptopCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CategoryActivity.class);
+                intent.putExtra("tendanhmuc",btnLaptopCategory.getText().toString());
+                startActivity(intent);
+            }
+        });
+        btnIpadCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CategoryActivity.class);
+                intent.putExtra("tendanhmuc",btnIpadCategory.getText().toString());
+                startActivity(intent);
+            }
+        });
+        btnEarphoneCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CategoryActivity.class);
+                intent.putExtra("tendanhmuc",btnEarphoneCategory.getText().toString());
+                startActivity(intent);
+            }
+        });
+        btnScreenCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CategoryActivity.class);
+                intent.putExtra("tendanhmuc",btnScreenCategory.getText().toString());
+                startActivity(intent);
+            }
+        });
+        btnAccessoryCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CategoryActivity.class);
+                intent.putExtra("tendanhmuc",btnAccessoryCategory.getText().toString());
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -207,43 +321,27 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(Call<ArrayList<product>> call, Response<ArrayList<product>> response) {
                         if (response.isSuccessful() && response.body() != null){
-                            ArrayList<product> listproduct = response.body();
-                            list.clear();
-                            list.addAll(listproduct);
+                            ArrayList<product> list = response.body();
+                            listproduct.clear();
+                            listproduct.addAll(list);
+                            all.clear();
+                            all.addAll(list);
                             adapterProduct.notifyDataSetChanged();
                             progressDialog.dismiss();
                         }else {
                             Toast.makeText(getContext(), "lỗi listproduct", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ArrayList<product>> call, Throwable t) {
                         Toast.makeText(getContext(), "Kết nối internet không ổn định", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 });
             }
         }).start();
-        adapterProduct = new AdapterProduct(list, getContext(), new AdapterProduct.ItemclickListener() {
-            @Override
-            public void OnItemclick(int position) {
-                Intent intent = new Intent(getActivity(),ProductActivity.class);
-                intent.putExtra("position", position);
-                intent.putExtra("list",list);
-                startActivity(intent);
-            }
-        });
-
-                //hiển thị danh sách recyclerview
-//                StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(
-//                2, StaggeredGridLayoutManager.VERTICAL
-//        );
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(adapterProduct);
-        int numberOfColumns = 2; // Điều này có thể được thay đổi thành số cột bạn muốn
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), numberOfColumns);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapterProduct);
     }
 
 

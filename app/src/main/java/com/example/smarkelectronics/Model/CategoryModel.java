@@ -1,24 +1,24 @@
 package com.example.smarkelectronics.Model;
 
-public class Favorite {
+public class CategoryModel {
     int idproduct;
-    int idfavorite;
     String imgavatar;
     String imgavatar2;
     String imgavatar3;
     String nameproduct;
     int priceproduct;
     String noteproduct;
+    String danhmuc;
 
-    public Favorite(int idproduct, int idfavorite, String imgavatar, String imgavatar2, String imgavatar3, String nameproduct, int priceproduct, String noteproduct) {
+    public CategoryModel(int idproduct, String imgavatar, String imgavatar2, String imgavatar3, String nameproduct, int priceproduct, String noteproduct, String danhmuc) {
         this.idproduct = idproduct;
-        this.idfavorite = idfavorite;
         this.imgavatar = imgavatar;
         this.imgavatar2 = imgavatar2;
         this.imgavatar3 = imgavatar3;
         this.nameproduct = nameproduct;
         this.priceproduct = priceproduct;
         this.noteproduct = noteproduct;
+        this.danhmuc = danhmuc;
     }
 
     public int getIdproduct() {
@@ -27,14 +27,6 @@ public class Favorite {
 
     public void setIdproduct(int idproduct) {
         this.idproduct = idproduct;
-    }
-
-    public int getIdfavorite() {
-        return idfavorite;
-    }
-
-    public void setIdfavorite(int idfavorite) {
-        this.idfavorite = idfavorite;
     }
 
     public String getImgavatar() {
@@ -83,5 +75,13 @@ public class Favorite {
 
     public void setNoteproduct(String noteproduct) {
         this.noteproduct = noteproduct;
+    }
+
+    public String getDanhmuc() {
+        return danhmuc;
+    }
+
+    public void setDanhmuc(String danhmuc) {
+        this.danhmuc = danhmuc;
     }
 }

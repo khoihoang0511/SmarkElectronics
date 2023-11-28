@@ -116,6 +116,7 @@
         android:textSize="18sp"
         app:cornerRadius="20dp" />
     <TextView
+        android:id="@+id/txtLogin"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Đã có tài khoản ? Đăng nhập"

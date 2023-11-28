@@ -51,7 +51,7 @@
             android:layout_weight="4">
 
             <TextView
-                android:id="@+id/tvdeletefavorite"
+                android:id="@+id/txtdeletefavorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/baseline_close"
@@ -60,7 +60,7 @@
                 />
 
             <TextView
-                android:id="@+id/tvaddcartfavorite"
+                android:id="@+id/txtaddcartfavorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/baseline_shopping_bag"

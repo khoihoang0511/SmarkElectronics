@@ -10,10 +10,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,10 +26,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center_vertical">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/baseline_search_24"/>
+<!--                        <ImageView-->
+<!--                            android:layout_width="30dp"-->
+<!--                            android:layout_height="30dp"-->
+<!--                            android:src="@drawable/baseline_search_24"/>-->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -154,7 +154,6 @@
                     android:id="@+id/relati1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-
                     <TextView
                         android:id="@+id/donhang1"
                         android:layout_width="wrap_content"
@@ -162,7 +161,6 @@
                         android:text="Địa chỉ giao hàng      "
                         android:textStyle="bold"
                         android:textSize="18dp"/>
-
                     <TextView
                         android:id="@+id/vanchuyen1"
                         android:layout_width="wrap_content"
@@ -171,8 +169,6 @@
                         android:layout_below="@id/donhang1"
                         android:textSize="12dp"
                         android:textColor="#A1A0A0"/>
-
-
                 </RelativeLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -185,52 +181,52 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_navigate_next"/>
                 </LinearLayout>
-
             </RelativeLayout>
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:elevation="10dp"-->
+<!--                android:padding="15dp"-->
+<!--                android:background="@drawable/dobong">-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/relati2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/donhang2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Liên kết thẻ hàng"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="18dp"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/vanchuyen2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="2 thẻ liên kết"-->
+<!--                android:layout_below="@id/donhang2"-->
+<!--                android:textSize="12dp"-->
+<!--                android:textColor="#A1A0A0"/>-->
+
+<!--            </RelativeLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_centerVertical="true">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/baseline_navigate_next"/>-->
+<!--                </LinearLayout>-->
+
+<!--            </RelativeLayout>-->
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:elevation="10dp"
-                android:padding="15dp"
-                android:background="@drawable/dobong">
-
-            <RelativeLayout
-                android:id="@+id/relati2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/donhang2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Liên kết thẻ hàng"
-                android:textStyle="bold"
-                android:textSize="18dp"/>
-
-            <TextView
-                android:id="@+id/vanchuyen2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2 thẻ liên kết"
-                android:layout_below="@id/donhang2"
-                android:textSize="12dp"
-                android:textColor="#A1A0A0"/>
-
-            </RelativeLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/baseline_navigate_next"/>
-                </LinearLayout>
-
-            </RelativeLayout> <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -260,16 +256,14 @@
                     android:textSize="12dp"
                     android:textColor="#A1A0A0"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10"
-                    android:layout_below="@id/donhang3"
-                    android:layout_toRightOf="@id/vanchuyen3"
-                    android:textSize="12dp"
-                    android:textColor="#9A9A9A"/>
-
-
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="10"-->
+<!--                    android:layout_below="@id/donhang3"-->
+<!--                    android:layout_toRightOf="@id/vanchuyen3"-->
+<!--                    android:textSize="12dp"-->
+<!--                    android:textColor="#9A9A9A"/>-->
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -301,7 +295,7 @@
                         android:id="@+id/donhang4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cài đặt"
+                        android:text="Cài đặt tài khoản"
                         android:textStyle="bold"
                         android:textSize="18dp"/>
 
@@ -309,7 +303,7 @@
                         android:id="@+id/vanchuyen4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thông báo, Mật khẩu, Tài khoản, Giao diện, Liên hệ"
+                        android:text="Mật khẩu, Tài khoản"
                         android:layout_below="@id/donhang4"
                         android:textSize="12dp"
                         android:textColor="#A1A0A0"/>
@@ -326,7 +320,6 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_navigate_next"/>
                 </LinearLayout>
-
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

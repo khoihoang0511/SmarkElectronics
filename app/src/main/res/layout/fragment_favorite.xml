@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#F3F3F3"
     tools:context=".Fragment.fragment_favorite">
 
@@ -19,11 +18,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white">
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center_vertical">
+
                         <ImageView
+                            android:id="@+id/opensearchfavorite"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:src="@drawable/baseline_search_24"/>
@@ -45,32 +47,47 @@
                 </androidx.appcompat.widget.Toolbar>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                    android:layout_height="wrap_content">
+
+                    <SearchView
+                        android:id="@+id/searchfavorite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/background_timkiem"
+                        android:visibility="gone"
+                        app:queryHint="Tìm kiếm" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcvfavorite"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:listitem="@layout/item_donhangnew"
-                        />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        >
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="65dp"
-                            android:backgroundTint="@color/black"
-                            android:text="Thêm tất cả vào giỏ hàng"
-                            android:textSize="20dp"
-                            app:cornerRadius="10dp"
-                            android:layout_marginBottom="20dp"/>
-                    </RelativeLayout>
-
+                        tools:listitem="@layout/item_favorite"
+                        android:layout_below="@+id/searchfavorite"/>
                 </RelativeLayout>
+
             </LinearLayout>
+
     </ScrollView>
-</LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/btnAddalltocart"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:backgroundTint="@color/black"
+            android:text="Thêm tất cả vào giỏ hàng"
+            android:textSize="20dp"
+            app:cornerRadius="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

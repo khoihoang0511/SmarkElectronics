@@ -1,6 +1,8 @@
 package com.example.smarkelectronics.Model;
 
-public class Cart {
+import java.io.Serializable;
+
+public class Cart implements Serializable {
     int idcart;
     String imgavatar;
     String imgavatar2;
