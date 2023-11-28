@@ -91,17 +91,26 @@ public class MyshipPingAddress extends AppCompatActivity {
                             listAddress.addAll(list);
                             adapterMyShippingAddress.notifyDataSetChanged();
                             progressDialog.dismiss();
-                            Log.e("--------------->",list.size()+"");
-
+                            Log.e("--------------->",response.body() +"");
+                            adapterMyShippingAddress.OnDeleteItemAddress(new AdapterMyShippingAddress.DeleteItemAddress() {
+                                @Override
+                                public void DeleteAddress(int position) {
+                                    listAddress.remove(position);
+                                    adapterMyShippingAddress.notifyDataSetChanged();
+                                }
+                            });
                         }else {
-                            Toast.makeText(MyshipPingAddress.this, "lỗi listproduct", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyshipPingAddress.this, "không có dữ liệu", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ArrayList<AddressModel>> call, Throwable t) {
-                        Toast.makeText(MyshipPingAddress.this, "ccccccccccccc", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyshipPingAddress.this, "không có dữ liệu", Toast.LENGTH_SHORT).show();
                         Log.e("--------------->",t+"");
+                        progressDialog.dismiss();
 
                     }
                 });
@@ -114,5 +123,4 @@ public class MyshipPingAddress extends AppCompatActivity {
         adapterMyShippingAddress = new AdapterMyShippingAddress(listAddress,MyshipPingAddress.this);
         rcvMyshippingaddress.setAdapter(adapterMyShippingAddress);
     }
-
 }

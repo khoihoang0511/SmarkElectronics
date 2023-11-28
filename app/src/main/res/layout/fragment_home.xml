@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/white"
     tools:context=".Fragment.HomeFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trang chủ"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_centerHorizontal="true"/>
+            <ImageView
+                android:id="@+id/imgcartt"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/logo"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -15,32 +40,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Trang chủ"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_centerHorizontal="true"/>
-                    <ImageView
-                        android:id="@+id/imgcartt"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/logo"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginRight="10dp"/>
-
-                </RelativeLayout>
-            </androidx.appcompat.widget.Toolbar>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,28 +61,19 @@
                             android:textColor="#303733"
                             android:layout_margin="5dp"
                             android:textSize="16dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:layout_alignParentEnd="true"
-                            android:drawableRight="@drawable/ic_chevron_right_24"
-                            android:layout_margin="5dp"
-                            android:textSize="16dp"/>
                     </RelativeLayout>
                 </LinearLayout>
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scrollbars="none">
-
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:columnCount="7"
                     android:rowCount="1">
-
                     <Button
+                        android:id="@+id/btnAllCategory"
                         android:layout_width="93dp"
                         android:layout_height="96dp"
                         android:text="Tất cả"
@@ -98,6 +88,7 @@
                         android:backgroundTint="#4AB7B6"/>
 
                     <Button
+                        android:id="@+id/btnPhoneCategory"
                         android:layout_width="93dp"
                         android:layout_height="96dp"
                         android:layout_row="0"
@@ -112,6 +103,7 @@
                         app:cornerRadius="16px" />
 
                     <Button
+                        android:id="@+id/btnLaptopCategory"
                         android:layout_width="93dp"
                         android:layout_height="96dp"
                         android:text="Laptop"
@@ -125,6 +117,7 @@
                         android:textColor="@color/white"
                         android:backgroundTint="#4B9DCB"/>
                     <Button
+                        android:id="@+id/btnIpadCategory"
                         android:layout_width="93dp"
                         android:layout_height="96dp"
                         android:text="Ipad"
@@ -139,6 +132,7 @@
                         android:backgroundTint="#8BC34A"/>
 
                     <Button
+                        android:id="@+id/btnEarphoneCategory"
                         android:layout_width="93dp"
                         android:layout_height="96dp"
                         android:layout_row="0"
@@ -153,9 +147,10 @@
                         app:cornerRadius="16px" />
 
                     <Button
+                        android:id="@+id/btnScreenCategory"
                         android:layout_width="93dp"
                         android:layout_height="96dp"
-                        android:text="Sạc laptop"
+                        android:text="Màn hình"
                         app:cornerRadius="16px"
                         android:layout_column="5"
                         android:layout_row="0"
@@ -166,6 +161,7 @@
                         android:textColor="@color/white"
                         android:backgroundTint="#A187D9"/>
                     <Button
+                        android:id="@+id/btnAccessoryCategory"
                         android:layout_width="93dp"
                         android:layout_height="96dp"
                         android:text="Phụ kiện"
@@ -180,7 +176,6 @@
                         android:backgroundTint="#FDAF3D"/>
                 </GridLayout>
                 </HorizontalScrollView>
-
             </LinearLayout>
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_paper"
@@ -212,7 +207,7 @@
                 android:background="@color/white"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.SearchView
+                <SearchView
                     android:id="@+id/searchsanpham"
                     android:layout_width="290dp"
                     android:layout_height="39dp"
@@ -222,29 +217,16 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/background_timkiem"
-                    app:queryHint="Tìm kiếm"
-                    />
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="39dp"
-                    android:padding="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_filter_alt_24"
-                    android:layout_gravity="center"
-                    android:background="@drawable/boder_filter"/>
+                    app:queryHint="Tìm kiếm" />
+
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvproduct"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:background="#F3F3F3"
                 tools:listitem="@layout/item_sanpham"/>
-
         </LinearLayout>
     </ScrollView>
-
-
-</LinearLayout>
+</RelativeLayout>

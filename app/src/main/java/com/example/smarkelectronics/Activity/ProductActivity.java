@@ -69,7 +69,7 @@ public class ProductActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null){
             position = intent.getIntExtra("position",0);//nếu không có dữ liệu thì mặc định là 0
-            productlist = (ArrayList<product>) intent.getSerializableExtra("list");
+            productlist = (ArrayList<product>) intent.getSerializableExtra("listproduct");
         }
 
         tvnameProduct.setText(productlist.get(position).getNameproduct());

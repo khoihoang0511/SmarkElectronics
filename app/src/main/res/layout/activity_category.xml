@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.CategoryActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toobarCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:id="@+id/imgBackCategory"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shade_repair"
+                android:drawableRight="@drawable/ic_chevron_left_24" />
+<!--            <ImageView-->
+<!--                android:id="@+id/opensearchsanpham"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:src="@drawable/baseline_search_24"/>-->
+            <SearchView
+                android:id="@+id/searchsanphamCategory"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imgBackCategory"
+                android:background="@drawable/background_timkiem"
+                android:visibility="visible"
+                android:layout_marginLeft="13dp"
+                app:queryHint="Tìm kiếm" />
+            <ImageView
+                android:id="@+id/imgArrange"
+                android:layout_width="40dp"
+                android:layout_height="39dp"
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_filter_alt_24"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/searchsanphamCategory"
+                android:layout_marginLeft="13dp"
+                android:background="@drawable/boder_filter"/>
+
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toobarCategory"
+        android:padding="10dp"/>
+    <LinearLayout
+        android:id="@+id/LayouTarrange"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/toobarCategory"
+        android:visibility="gone"
+        android:layout_alignParentEnd="true">
+        <ToggleButton
+            android:id="@+id/btnTArrangePrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOn="Giá từ thấp đến cao"
+            android:textOff="Giá từ cao đến thấp"/>
+        <ToggleButton
+            android:id="@+id/btnTArrangeLetter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOn="Xắp xếp từ a-z"
+            android:textOff="Xắp xếp từ z-a"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

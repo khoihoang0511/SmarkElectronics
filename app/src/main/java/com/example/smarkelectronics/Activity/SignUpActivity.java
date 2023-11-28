@@ -3,10 +3,12 @@ package com.example.smarkelectronics.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smarkelectronics.R;
@@ -32,8 +34,15 @@ public class SignUpActivity extends AppCompatActivity {
         TextInputEditText edtPassword = findViewById(R.id.edtPassword);
         TextInputEditText edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         Button btnDangKy = findViewById(R.id.btnDangKy);
+        TextView txtLogin = findViewById(R.id.txtLogin);
 
 
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignUpActivity.this,LoginActivity.class));
+            }
+        });
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +50,12 @@ public class SignUpActivity extends AppCompatActivity {
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
                 String confirmpassword = edtConfirmPassword.getText().toString();
-                if (password.equals(confirmpassword)) {
+                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmpassword.isEmpty()){
+                    Toast.makeText(SignUpActivity.this, "Hãy điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                }
+                else if (!password.equals(confirmpassword)) {
+                    Toast.makeText(SignUpActivity.this, "password và confirmpassword không giống nhau", Toast.LENGTH_SHORT).show();
+                }else {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {

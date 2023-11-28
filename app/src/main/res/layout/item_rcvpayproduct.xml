@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="5dp">
+
+    <ImageView
+        android:id="@+id/imgProductPay"
+        android:layout_width="94dp"
+        android:layout_height="120dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/mac"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/imgProductPay"
+        android:layout_centerVertical="true">
+        <TextView
+            android:id="@+id/txtProductNamePay"
+            android:layout_width="215dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:text="Ipad Pro 11 2021"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+
+            android:textSize="14dp"/>
+        <TextView
+            android:id="@+id/txtPiceProductPay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="18.990.000 đ"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="#7E7E7E"/>
+        <TextView
+            android:id="@+id/txtQuantityProductPay"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:background="@drawable/background_quantity2"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="1"
+            android:textSize="18dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</RelativeLayout>

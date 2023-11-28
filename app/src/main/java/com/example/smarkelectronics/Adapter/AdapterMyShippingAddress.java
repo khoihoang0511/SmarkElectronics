@@ -51,6 +51,14 @@ public class AdapterMyShippingAddress extends RecyclerView.Adapter<AdapterMyShip
         this.list = list;
         this.context = context;
     }
+    public interface DeleteItemAddress{
+        void DeleteAddress (int position);
+    }
+    private DeleteItemAddress deleteItemAddress;
+
+    public void OnDeleteItemAddress(DeleteItemAddress deleteItemAddress){
+        this.deleteItemAddress = deleteItemAddress;
+    }
 
     @NonNull
     @Override
@@ -75,6 +83,7 @@ public class AdapterMyShippingAddress extends RecyclerView.Adapter<AdapterMyShip
             @Override
             public void onClick(View v) {
                 deleteMyshippingaddress(list.get(holder.getAdapterPosition()).getIdaddress());
+                deleteItemAddress.DeleteAddress(holder.getAdapterPosition());
             }
         });
 

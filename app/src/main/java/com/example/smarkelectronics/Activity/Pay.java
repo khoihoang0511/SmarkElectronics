@@ -20,11 +20,14 @@ import android.widget.Toast;
 
 import com.example.smarkelectronics.Adapter.AdapterAddress;
 import com.example.smarkelectronics.Adapter.AdapterProduct;
+import com.example.smarkelectronics.Adapter.AdapterProductPay;
 import com.example.smarkelectronics.Model.AddressModel;
+import com.example.smarkelectronics.Model.Cart;
 import com.example.smarkelectronics.Model.product;
 import com.example.smarkelectronics.R;
 import com.example.smarkelectronics.api.API;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -42,6 +45,11 @@ public class Pay extends AppCompatActivity {
     TextView txtNamePay;
     TextView txtAddressPay;
     TextView txtSdtPay;
+    RecyclerView rcvPayProduct;
+    AdapterProductPay adapterProductPay;
+    ArrayList<Cart> listProductPay;
+
+    TextView txtTotalcostofgoodsDisplay,txtTransportfeeDisplay,txtTotalsettlementDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +61,33 @@ public class Pay extends AppCompatActivity {
         Button btnPay = findViewById(R.id.btnPay);
         ImageView imgBackPay = findViewById(R.id.imgBackPay);
 
-        listAddress = new ArrayList<>();
+        txtTotalcostofgoodsDisplay = findViewById(R.id.txtTotalcostofgoodsDisplay);
+        txtTransportfeeDisplay = findViewById(R.id.txtTransportfeeDisplay);
+        txtTotalsettlementDisplay = findViewById(R.id.txtTotalsettlementDisplay);
 
+        listAddress = new ArrayList<>();
         txtNamePay = findViewById(R.id.txtNamePay);
         txtAddressPay = findViewById(R.id.txtAddressPay);
         txtSdtPay = findViewById(R.id.txtSdtPay);
 
+        listProductPay = new ArrayList<>();
+        Intent getProduct = getIntent();
+        if (getProduct !=null){
+            listProductPay = (ArrayList<Cart>) getProduct.getSerializableExtra("sendproduct");
+        }
+
+        rcvPayProduct = findViewById(R.id.rcvPayProduct);
+        LinearLayoutManager linearLayoutManagerPay = new LinearLayoutManager(Pay.this);
+        rcvPayProduct.setLayoutManager(linearLayoutManagerPay);
+        adapterProductPay= new AdapterProductPay(Pay.this,listProductPay);
+        rcvPayProduct.setAdapter(adapterProductPay);
+
+        updatecost();
 
         imgBackPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                startActivity(new Intent(Pay.this,CartActivity.class));
             }
         });
         btnPay.setOnClickListener(new View.OnClickListener() {
@@ -138,13 +162,15 @@ public class Pay extends AppCompatActivity {
 
                                 }else {
                                     Toast.makeText(Pay.this, "lỗi listproduct", Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
                                 }
                             }
-
                             @Override
                             public void onFailure(Call<ArrayList<AddressModel>> call, Throwable t) {
-                                Toast.makeText(Pay.this, "ccccccccccccc", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Pay.this, "Không có dữ liệu Pay", Toast.LENGTH_SHORT).show();
                                 Log.e("--------------->",t+"");
+                                progressDialog.dismiss();
+                                dialog.cancel();
                             }
                         });
                     }
@@ -157,6 +183,22 @@ public class Pay extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+    float totalPayment;
+    private void updatecost(){
+        float totalCostItem = 0;
+        float Fee = 20000;
+        for (Cart t : listProductPay){
+            totalCostItem += t.getPriceproduct()*t.getQuanlitycart();
+        }
+
+        totalPayment = totalCostItem + Fee;
+        DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
+        txtTotalcostofgoodsDisplay.setText(decimalFormat.format(totalCostItem));
+        txtTransportfeeDisplay.setText(decimalFormat.format(Fee));
+        txtTotalsettlementDisplay.setText(decimalFormat.format(totalPayment));
+
+
 
     }
 }

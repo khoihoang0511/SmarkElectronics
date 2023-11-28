@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.smarkelectronics.Activity.CartActivity;
 import com.example.smarkelectronics.Model.Cart;
+import com.example.smarkelectronics.Model.CartCheckBoxModel;
 import com.example.smarkelectronics.R;
 import com.example.smarkelectronics.api.API;
 
@@ -34,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
 
     Context context;
-    ArrayList<Cart> list;
+    ArrayList<CartCheckBoxModel> list;
 
     int tongthanhtoan = 0;
 
@@ -42,18 +43,36 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
     private Handler handlercart = new Handler();
 
 
-    public AdapterCart(Context context, ArrayList<Cart> list) {
+    public AdapterCart(Context context, ArrayList<CartCheckBoxModel> list) {
         this.context = context;
         this.list = list;
     }
 
     //interface Gửi dữ liệu tổng tiền khi checkbox
     public interface OnClickCartCheckbox {
-        public void clickcheckBox(int tongtien);
+        public void clickcheckBox(boolean check,int vitri);
     }
     public OnClickCartCheckbox onClickCartCheckbox;
     public void setOnClickProduct(OnClickCartCheckbox onClickCartCheckbox) {
         this.onClickCartCheckbox = onClickCartCheckbox;
+    }
+
+    //Truyền dữ liều từ adapter sang activity
+    public interface UpdatecartQuantity{
+        void CartQuantity (int position, int Quantity);
+    }
+    private UpdatecartQuantity updatecartQuantity;
+
+    public void SetUpdatecartQuantity(UpdatecartQuantity updatecartQuantity){
+        this.updatecartQuantity = updatecartQuantity;
+    }
+    public interface DeleteItemCart{
+        void deleteItemCart (int position);
+    }
+    private DeleteItemCart deleteItemCart;
+
+    public void OnDeleteItemCart(DeleteItemCart deleteItemCart){
+        this.deleteItemCart = deleteItemCart;
     }
     //---------
 
@@ -82,6 +101,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
                 if (quanlity >=2){
                     quanlity--;
                     holder.tvquantityCart.setText(String.valueOf(quanlity));
+                    updatecartQuantity.CartQuantity(holder.getAdapterPosition(), quanlity);
                 }
             }
         });
@@ -90,6 +110,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
             @Override
             public void onClick(View v) {
                 deleteItemCart(list.get(holder.getAdapterPosition()).getIdcart());
+                deleteItemCart.deleteItemCart(holder.getAdapterPosition());
             }
         });
         holder.tvmaxcountcart.setOnClickListener(new View.OnClickListener() {
@@ -99,26 +120,24 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHodel> {
                 if (quanlity >= 1){
                     quanlity++;
                     holder.tvquantityCart.setText(String.valueOf(quanlity));
+                    updatecartQuantity.CartQuantity(holder.getAdapterPosition(), quanlity);
                 }
             }
         });
+
         holder.cboxcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.cboxcart.isChecked()){
-                    int gia = list.get(vitricart).getPriceproduct();
-                    int quanlity = Integer.parseInt(holder.tvquantityCart.getText().toString());
-                    tongthanhtoan +=(gia*quanlity);
-                    onClickCartCheckbox.clickcheckBox(tongthanhtoan);
-                }else {
-                    int gia = list.get(vitricart).getPriceproduct();
-                    int quanlity = Integer.parseInt(holder.tvquantityCart.getText().toString());
-                    tongthanhtoan -= (gia*quanlity);
-                    onClickCartCheckbox.clickcheckBox(tongthanhtoan);
-                }
+                if (list.get(holder.getAdapterPosition()).isCheck())
+                list.get(holder.getAdapterPosition()).setCheck(false);
+                else
+                    list.get(holder.getAdapterPosition()).setCheck(true);
+                onClickCartCheckbox.clickcheckBox(list.get(holder.getAdapterPosition()).isCheck(), holder.getAdapterPosition());
             }
         });
+
     }
+
     private void deleteItemCart(Integer id){
         new Thread(new Runnable() {
             @Override
