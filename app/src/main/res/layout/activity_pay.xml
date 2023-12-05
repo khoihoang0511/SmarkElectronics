@@ -95,11 +95,26 @@
                     android:layout_height="wrap_content"
                     android:hint="Payment"
                     android:drawableEnd="@drawable/baseline_border_color_24"/>
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+                    <RadioButton
+                        android:id="@+id/rbtnOnline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Thanh toán Oline"/>
+                    <RadioButton
+                        android:id="@+id/rbtnOffline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Thanh toán Offline"/>
+                </RadioGroup>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp">
+                android:layout_marginTop="10dp">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

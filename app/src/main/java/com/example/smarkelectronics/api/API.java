@@ -5,6 +5,8 @@ import com.example.smarkelectronics.Model.Cart;
 import com.example.smarkelectronics.Model.CategoryModel;
 import com.example.smarkelectronics.Model.Customer;
 import com.example.smarkelectronics.Model.Favorite;
+import com.example.smarkelectronics.Model.OderModel;
+import com.example.smarkelectronics.Model.ProfileModel;
 import com.example.smarkelectronics.Model.product;
 
 import java.util.ArrayList;
@@ -24,7 +26,25 @@ public interface API {
     Call<String> addcart(@Query("soluong") int soluong,@Query("idproduct") int id);
 
     @GET("addDress.php")
-    Call<String> addDress(@Query("nameaddress") String nameaddress,@Query("phoneaddress") String phoneaddress,@Query("Phuong") String Phuong,@Query("Quan") String Quan,@Query("thanhpho") String thanhpho, @Query("chitiet") String chitiet);
+    Call<String> addDress(@Query("nameaddress") String nameaddress,
+                          @Query("phoneaddress") String phoneaddress,
+                          @Query("Phuong") String Phuong,
+                          @Query("Quan") String Quan,
+                          @Query("thanhpho") String thanhpho,
+                          @Query("chitiet") String chitiet,
+                          @Query("email") String email,
+                          @Query("password") String password);
+
+    @GET("UpdateDress.php")
+    Call<String> updateDress(@Query("idaddress")int idaddress,
+                             @Query("nameaddress") String nameaddress,
+                             @Query("phoneaddress") String phoneaddress,
+                             @Query("Phuong") String Phuong,
+                             @Query("Quan") String Quan,
+                             @Query("thanhpho") String thanhpho,
+                             @Query("chitiet") String chitiet,
+                             @Query("email") String email,
+                             @Query("password") String password);
 
     @GET("getlistAddress.php")
     Call<ArrayList<AddressModel>> getlistAddress();
@@ -55,4 +75,14 @@ public interface API {
 
     @GET("getlistCategory.php")
     Call<ArrayList<CategoryModel>> getlistCategory(@Query("NameCategory")String nameCategory);
+
+    @GET("getprofile.php")
+    Call<ProfileModel> getprofile(@Query("email")String email,@Query("password") String password);
+
+    @GET("getlistoder.php")
+    Call<ArrayList<OderModel>> getListOder(@Query("email")String email, @Query("password") String password);
+
+    @GET("cancelOder.php")
+    Call<String> delete_ItemOder(@Query("IDoder")Integer idoder);
+
 }

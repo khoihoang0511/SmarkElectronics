@@ -14,13 +14,25 @@
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="76dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/black"
             android:drawableBottom="@drawable/baseline_delete_outline_24"
             app:cornerRadius="4dp" />
 
+        <Button
+            android:id="@+id/btnEditAddress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/btnDeleMyshippingaddress"
+            android:backgroundTint="@color/black"
+            android:drawableBottom="@drawable/baseline_create_24"
+            app:cornerRadius="4dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Hồ Chí Minh"
+                android:layout_marginTop="5dp"
                 android:textSize="14dp" />
 
             <TextView
@@ -74,6 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="SĐT: 0352078904 "
+                android:layout_marginTop="5dp"
                 android:textSize="14dp" />
         </LinearLayout>
     </RelativeLayout>

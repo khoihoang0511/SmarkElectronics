@@ -1,6 +1,8 @@
 package com.example.smarkelectronics.Model;
 
-public class AddressModel {
+import java.io.Serializable;
+
+public class AddressModel implements Serializable {
     private int idaddress;
     private String nameaddress;
     private String chitiet;

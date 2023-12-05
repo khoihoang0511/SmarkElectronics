@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -62,6 +63,7 @@ public class fragment_favorite extends Fragment {
         btnAddalltocart = view.findViewById(R.id.btnAddalltocart);
         opensearchfavorite = view.findViewById(R.id.opensearchfavorite);
         searchfavorite = view.findViewById(R.id.searchfavorite);
+
         return view;
     }
 
