@@ -51,6 +51,14 @@ public class MyshipPingAddress extends AppCompatActivity {
 
         listAddress = new ArrayList<>();
         TextView tvback = findViewById(R.id.tvback);
+        ImageView imgAddAddress = findViewById(R.id.imgAddAddress);
+
+        imgAddAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyshipPingAddress.this,Addshippingaddress.class));
+            }
+        });
 
         tvback.setOnClickListener(new View.OnClickListener() {
             @Override

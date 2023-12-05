@@ -47,6 +47,7 @@ public class Pay extends AppCompatActivity {
     TextView txtSdtPay;
     RecyclerView rcvPayProduct;
     AdapterProductPay adapterProductPay;
+    Button btnPay;
     ArrayList<Cart> listProductPay;
 
     TextView txtTotalcostofgoodsDisplay,txtTransportfeeDisplay,txtTotalsettlementDisplay;
@@ -58,12 +59,12 @@ public class Pay extends AppCompatActivity {
 
         RelativeLayout SelectAddress = findViewById(R.id.SelectAddress);
         TextView txtAddnNewAddress = findViewById(R.id.txtAddnNewAddress);
-        Button btnPay = findViewById(R.id.btnPay);
         ImageView imgBackPay = findViewById(R.id.imgBackPay);
 
         txtTotalcostofgoodsDisplay = findViewById(R.id.txtTotalcostofgoodsDisplay);
         txtTransportfeeDisplay = findViewById(R.id.txtTransportfeeDisplay);
         txtTotalsettlementDisplay = findViewById(R.id.txtTotalsettlementDisplay);
+        btnPay = findViewById(R.id.btnPay);
 
         listAddress = new ArrayList<>();
         txtNamePay = findViewById(R.id.txtNamePay);
@@ -83,6 +84,13 @@ public class Pay extends AppCompatActivity {
         rcvPayProduct.setAdapter(adapterProductPay);
 
         updatecost();
+
+        btnPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         imgBackPay.setOnClickListener(new View.OnClickListener() {
             @Override

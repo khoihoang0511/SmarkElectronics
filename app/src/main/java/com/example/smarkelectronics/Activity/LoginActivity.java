@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -82,6 +83,11 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Customer> call, Response<Customer> response) {
                         if (response.isSuccessful() && response.body()!=null){
+                            SharedPreferences saveAcc = getSharedPreferences("SaveAcc",MODE_PRIVATE);
+                            SharedPreferences.Editor editAcc = saveAcc.edit();
+                            editAcc.putString("SaveEmail",email);
+                            editAcc.putString("SavePass",pass);
+                            editAcc.apply();
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this,MainActivity.class));
                             progressDialog.dismiss();

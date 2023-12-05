@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smarkelectronics.Activity.Addshippingaddress;
 import com.example.smarkelectronics.Activity.CartActivity;
 import com.example.smarkelectronics.Activity.MyshipPingAddress;
 import com.example.smarkelectronics.Model.AddressModel;
@@ -77,7 +78,17 @@ public class AdapterMyShippingAddress extends RecyclerView.Adapter<AdapterMyShip
         holder.txtWardSelectAddress.setText(list.get(vitri).getPhuong());
         holder.txtDistrictSelectAddress.setText(list.get(vitri).getQuan());
         holder.txtCitySelectAddress.setText(list.get(vitri).getThanhpho());
-        holder.txtPhoneSelectAddress.setText(list.get(vitri).getPhoneaddress());
+        holder.txtPhoneSelectAddress.setText(list.get(vitri).getPhoneaddress().trim()+"");
+
+        holder.btnEditAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Addshippingaddress.class);
+                intent.putExtra("Updateaddress",list.get(holder.getAdapterPosition()));
+
+                context.startActivity(intent);
+            }
+        });
 
         holder.btnDeleMyshippingaddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,9 +149,10 @@ public class AdapterMyShippingAddress extends RecyclerView.Adapter<AdapterMyShip
 
     public class Viewholder extends RecyclerView.ViewHolder {
         TextView txtNameSelectAddress,txtDetailedAddressSelectAddress,txtWardSelectAddress,txtDistrictSelectAddress,txtCitySelectAddress,txtPhoneSelectAddress;
-        Button btnDeleMyshippingaddress;
+        Button btnDeleMyshippingaddress,btnEditAddress;
         public Viewholder(@NonNull View itemView) {
             super(itemView);
+            btnEditAddress = itemView.findViewById(R.id.btnEditAddress);
             btnDeleMyshippingaddress = itemView.findViewById(R.id.btnDeleMyshippingaddress);
             txtNameSelectAddress = itemView.findViewById(R.id.txtNameSelectAddress);
             txtDetailedAddressSelectAddress = itemView.findViewById(R.id.txtDetailedAddressSelectAddress);

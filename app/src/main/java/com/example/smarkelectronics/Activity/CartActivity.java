@@ -70,9 +70,12 @@ public class CartActivity extends AppCompatActivity {
                         listPay.add(a);
                     }
                 }
-                Intent intent = new Intent(CartActivity.this, Pay.class);
-                intent.putExtra("sendproduct",listPay);
-                startActivity(intent);
+                if (listPay.size()>0){
+                    Intent intent = new Intent(CartActivity.this, Pay.class);
+                    intent.putExtra("sendproduct",listPay);
+                    startActivity(intent);
+                }else
+                    Toast.makeText(CartActivity.this, "Không có sản phẩm để thanh toán", Toast.LENGTH_SHORT).show();
             }
         });
     }
