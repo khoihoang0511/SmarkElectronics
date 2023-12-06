@@ -4,90 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F3F3"
+    android:background="@color/white"
     tools:context=".Fragment.fragment_favorite">
 
-    <ScrollView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <androidx.appcompat.widget.Toolbar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_alignParentTop="true">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:gravity="center_vertical">
-
-                        <ImageView
-                            android:id="@+id/opensearchfavorite"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/baseline_search_24"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Sản phẩm yêu thích"
-                            android:textSize="20dp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="5dp"
-                            android:layout_centerHorizontal="true"/>
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginLeft="350dp"
-                            android:src="@drawable/logo" />
-                    </RelativeLayout>
-                </androidx.appcompat.widget.Toolbar>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <SearchView
-                        android:id="@+id/searchfavorite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/background_timkiem"
-                        android:visibility="gone"
-                        app:queryHint="Tìm kiếm" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rcvfavorite"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        tools:listitem="@layout/item_favorite"
-                        android:layout_below="@+id/searchfavorite"/>
-                </RelativeLayout>
-
-            </LinearLayout>
-
-    </ScrollView>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true">
-        <Button
-            android:id="@+id/btnAddalltocart"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:backgroundTint="@color/black"
-            android:text="Thêm tất cả vào giỏ hàng"
-            android:textSize="20dp"
-            app:cornerRadius="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"/>
-    </RelativeLayout>
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/opensearchfavorite"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/baseline_search_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sản phẩm yêu thích"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:id="@+id/imgCartfavorite"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="340dp"
+                android:src="@drawable/logo" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <SearchView
+        android:id="@+id/searchfavorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="100dp"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/background_timkiem"
+        android:visibility="gone"
+        app:queryHint="Tìm kiếm" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvfavorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_favorite"
+        android:layout_below="@+id/searchfavorite"
+        android:layout_above="@id/btnAddalltocart"/>
+
+    <Button
+        android:id="@+id/btnAddalltocart"
+        android:layout_width="335dp"
+        android:layout_height="65dp"
+        android:backgroundTint="@color/black"
+        android:text="Thêm tất cả vào giỏ hàng"
+        android:textSize="20dp"
+        app:cornerRadius="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"/>
+
 
 </RelativeLayout>

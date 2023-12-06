@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smarkelectronics.Activity.Addshippingaddress;
+import com.example.smarkelectronics.Activity.MyReviewActivity;
 import com.example.smarkelectronics.Activity.MyshipPingAddress;
 import com.example.smarkelectronics.Activity.OderActivity;
 import com.example.smarkelectronics.Activity.Pay;
@@ -63,11 +64,19 @@ public class fragment_profile_new extends Fragment {
         txtNumberdelivery = view.findViewById(R.id.txtNumberdelivery);
         txtNumberEvaluate = view.findViewById(R.id.txtNumberEvaluate);
         RelativeLayout rltMyOrder = view.findViewById(R.id.rltMyOrder);
+        RelativeLayout rltMyreview5 = view.findViewById(R.id.rltMyreview5);
 
         RelativeLayout rcvMyshippingaddress = view.findViewById(R.id.rcvMyshippingaddress);
         saveAcc = getContext().getSharedPreferences("SaveAcc", MODE_PRIVATE);
         email = saveAcc.getString("SaveEmail",null);
         password = saveAcc.getString("SavePass",null);
+
+        rltMyreview5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), MyReviewActivity.class));
+            }
+        });
 
 
         rltMyOrder.setOnClickListener(new View.OnClickListener() {

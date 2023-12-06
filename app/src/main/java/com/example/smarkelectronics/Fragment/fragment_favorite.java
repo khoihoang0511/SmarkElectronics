@@ -1,6 +1,7 @@
 package com.example.smarkelectronics.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.smarkelectronics.Activity.CartActivity;
 import com.example.smarkelectronics.Adapter.AdapterFavorite;
 import com.example.smarkelectronics.Model.CategoryModel;
 import com.example.smarkelectronics.Model.Favorite;
@@ -44,7 +46,7 @@ public class fragment_favorite extends Fragment {
     ArrayList<Favorite> favoritelist;
     RecyclerView rcvfavorite;
     Button btnAddalltocart;
-    ImageView opensearchfavorite;
+    ImageView opensearchfavorite,imgCartfavorite;
     SearchView searchfavorite;
     ArrayList<Favorite> all;
 
@@ -63,6 +65,14 @@ public class fragment_favorite extends Fragment {
         btnAddalltocart = view.findViewById(R.id.btnAddalltocart);
         opensearchfavorite = view.findViewById(R.id.opensearchfavorite);
         searchfavorite = view.findViewById(R.id.searchfavorite);
+        imgCartfavorite = view.findViewById(R.id.imgCartfavorite);
+
+        imgCartfavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), CartActivity.class));
+            }
+        });
 
         return view;
     }

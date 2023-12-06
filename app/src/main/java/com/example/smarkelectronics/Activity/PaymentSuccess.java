@@ -17,12 +17,19 @@ public class PaymentSuccess extends AppCompatActivity {
         setContentView(R.layout.activity_payment_success);
 
         Button btnGoBackToTheMainPage = findViewById(R.id.btnGoBackToTheMainPage);
+        Button btnViewOrders = findViewById(R.id.btnViewOrders);
+
+        btnViewOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PaymentSuccess.this,OderActivity.class));
+            }
+        });
 
         btnGoBackToTheMainPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PaymentSuccess.this,MainActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(PaymentSuccess.this,MainActivity.class));
             }
         });
     }

@@ -16,11 +16,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.smarkelectronics.Activity.EvaluateActivity;
 import com.example.smarkelectronics.Activity.OderActivity;
 import com.example.smarkelectronics.Model.OderModel;
 import com.example.smarkelectronics.R;
 import com.example.smarkelectronics.api.API;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -51,25 +53,42 @@ public class OderAdapter extends RecyclerView.Adapter<OderAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull OderAdapter.ViewHolder holder, int position) {
         OderModel oderModel = listOder.get(holder.getAdapterPosition());
         try{
+            DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
             Glide.with(context)
                     .load(oderModel.getImgProductOder())
                     .into(holder.imgProductOder);
             holder.txtNameSPOder.setText(oderModel.getNameProduct()+"");
-            holder.txtPriceProductOder.setText(oderModel.getPriceProductOder()+"");
+            holder.txtPriceProductOder.setText(decimalFormat.format(oderModel.getPriceProductOder()));
             holder.txtQuantityOder.setText(oderModel.getQuantityorder()+"");
-            holder.txtTotalPaymentOder.setText(oderModel.getCosts()+"");
-            String nameStatus = oderModel.getStatus() == 0 ?"Đang xác nhận": oderModel.getStatus() == 1?"Đang giao": oderModel.getStatus() == 2?"Giao thành công":"Đã hủy";
+            holder.txtTotalPaymentOder.setText(decimalFormat.format(oderModel.getCosts()));
+            String nameStatus = oderModel.getStatus() == 0 ?"Đang xữ lý": oderModel.getStatus() == 1?"Đã xác nhận": oderModel.getStatus() == 2?"Đang giao": oderModel.getStatus() == 3?"Giao thành công":"Đã hủy";
             holder.txtStatusOderDisplay.setText(nameStatus+"");
 
-            if (oderModel.getStatus() != 0 ){
-                holder.btnStatusOder.setVisibility(View.GONE);
-            }else {
+            if (oderModel.getStatus() ==0 || oderModel.getStatus() ==3 ){
                 holder.btnStatusOder.setVisibility(View.VISIBLE);
+                if (oderModel.getStatus() == 0){
+                    holder.btnStatusOder.setText("Hủy đơn");
+                }else {
+                    holder.btnStatusOder.setText("Feedback");
+                }
+            }else{
+                holder.btnStatusOder.setVisibility(View.GONE);
             }
             holder.btnStatusOder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    cancelOder(listOder.get(holder.getAdapterPosition()).getIdmyoder());
+                    if (holder.btnStatusOder.getText().toString().equals("Hủy đơn")){
+                        cancelOder(listOder.get(holder.getAdapterPosition()).getIdmyoder());
+                    }else {
+                        Intent intent = new Intent(context, EvaluateActivity.class);
+                        OderModel get = listOder.get(holder.getAdapterPosition());
+                        intent.putExtra("Image",get.getImgProductOder());
+                        intent.putExtra("Name",get.getNameProduct());
+                        intent.putExtra("id",get.getIdmyoder());
+                        context.startActivity(intent);
+
+                    }
+
                 }
             });
         }catch (Exception e){
