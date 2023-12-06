@@ -32,6 +32,7 @@
         android:layout_marginTop="50dp"
         android:layout_gravity="center"/>
     <Button
+        android:id="@+id/btnViewOrders"
         android:layout_width="335dp"
         android:layout_height="60dp"
         android:layout_marginTop="70dp"

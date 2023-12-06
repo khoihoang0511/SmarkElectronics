@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
@@ -206,6 +207,9 @@ public class ProductActivity extends AppCompatActivity {
         tvaddcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences saveAcc = getSharedPreferences("SaveAcc",MODE_PRIVATE);
+                String email = saveAcc.getString("SaveEmail","");
+                String password = saveAcc.getString("SavePass","");
              new Thread(new Runnable() {
                  @Override
                  public void run() {
@@ -224,7 +228,7 @@ public class ProductActivity extends AppCompatActivity {
                              .build();
                      API api = retrofit.create(API.class);
                      quanlityproduct = Integer.parseInt(tvquantityProduct.getText().toString());
-                     Call<String> callproduct = api.addcart(quanlityproduct,productlist.get(position).getIdproduct());
+                     Call<String> callproduct = api.addcart(quanlityproduct,productlist.get(position).getIdproduct(),email,password);
                      callproduct.enqueue(new Callback<String>() {
                          @Override
                          public void onResponse(Call<String> call, Response<String> response) {

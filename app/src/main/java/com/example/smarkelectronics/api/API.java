@@ -5,6 +5,8 @@ import com.example.smarkelectronics.Model.Cart;
 import com.example.smarkelectronics.Model.CategoryModel;
 import com.example.smarkelectronics.Model.Customer;
 import com.example.smarkelectronics.Model.Favorite;
+import com.example.smarkelectronics.Model.MyReviewModel;
+import com.example.smarkelectronics.Model.NotificationModel;
 import com.example.smarkelectronics.Model.OderModel;
 import com.example.smarkelectronics.Model.ProfileModel;
 import com.example.smarkelectronics.Model.product;
@@ -23,7 +25,7 @@ public interface API {
     Call<ArrayList<Cart>> getlistcart() ;
 
     @GET("addcart.php")
-    Call<String> addcart(@Query("soluong") int soluong,@Query("idproduct") int id);
+    Call<String> addcart(@Query("soluong") int soluong,@Query("idproduct") int id,@Query("email")String email, @Query("password") String password);
 
     @GET("addDress.php")
     Call<String> addDress(@Query("nameaddress") String nameaddress,
@@ -84,5 +86,15 @@ public interface API {
 
     @GET("cancelOder.php")
     Call<String> delete_ItemOder(@Query("IDoder")Integer idoder);
+
+    @GET("pay.php")
+    Call<String> Pay(@Query("listPay")String listPay,@Query("txtAddressPay")int txtAddressPay,@Query("payment")Integer payment,@Query("email")String email, @Query("password") String password);
+
+    @GET("getListMyReview.php")
+    Call<ArrayList<MyReviewModel>> getListMyReview(@Query("email")String email, @Query("password") String password);
+    @GET("getListNotification.php")
+    Call<ArrayList<NotificationModel>> getListNotification(@Query("email")String email, @Query("password") String password);
+    @GET("addReview.php")
+    Call<String> addReview(@Query("numberofstars")int numberofstars,@Query("content")String content,@Query("id")int id,@Query("email")String email, @Query("password") String password);
 
 }

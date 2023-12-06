@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ import com.example.smarkelectronics.Model.Cart;
 import com.example.smarkelectronics.Model.product;
 import com.example.smarkelectronics.R;
 import com.example.smarkelectronics.api.API;
+import com.google.gson.Gson;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -51,6 +54,8 @@ public class Pay extends AppCompatActivity {
     ArrayList<Cart> listProductPay;
 
     TextView txtTotalcostofgoodsDisplay,txtTransportfeeDisplay,txtTotalsettlementDisplay;
+    RadioButton rbtnOnline,rbtnOffline;
+    Integer idaddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,8 @@ public class Pay extends AppCompatActivity {
         txtNamePay = findViewById(R.id.txtNamePay);
         txtAddressPay = findViewById(R.id.txtAddressPay);
         txtSdtPay = findViewById(R.id.txtSdtPay);
+        rbtnOnline = findViewById(R.id.rbtnOnline);
+        rbtnOffline = findViewById(R.id.rbtnOffline);
 
         listProductPay = new ArrayList<>();
         Intent getProduct = getIntent();
@@ -88,6 +95,13 @@ public class Pay extends AppCompatActivity {
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (txtAddressPay.getText().toString().isEmpty()){
+                    Toast.makeText(Pay.this, "Bạn chưa chọn địa chỉ giao hàng", Toast.LENGTH_SHORT).show();
+                }else if (!rbtnOnline.isChecked() && !rbtnOffline.isChecked()){
+                    Toast.makeText(Pay.this, "Bạn chưa chọn phương thức thanh toán", Toast.LENGTH_SHORT).show();
+                }else {
+                    pay(new Gson().toJson(listProductPay));
+                }
 
             }
         });
@@ -96,13 +110,6 @@ public class Pay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Pay.this,CartActivity.class));
-            }
-        });
-        btnPay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Pay.this,PaymentSuccess.class);
-                startActivity(intent);
             }
         });
 
@@ -160,11 +167,12 @@ public class Pay extends AppCompatActivity {
 
                                     adapterAddress.OnItemclickListenerAddress(new AdapterAddress.ItemclickListenerAddress() {
                                         @Override
-                                        public void OnItemclickAddress(String name, String adress, String sdt) {
+                                        public void OnItemclickAddress(String name, String adress, String sdt,int id) {
                                             txtNamePay.setText(name + "");
                                             txtAddressPay.setText(adress + "");
                                             txtSdtPay.setText(sdt + "");
                                             dialog.cancel();
+                                            idaddress = id;
                                         }
                                     });
 
@@ -205,8 +213,59 @@ public class Pay extends AppCompatActivity {
         txtTotalcostofgoodsDisplay.setText(decimalFormat.format(totalCostItem));
         txtTransportfeeDisplay.setText(decimalFormat.format(Fee));
         txtTotalsettlementDisplay.setText(decimalFormat.format(totalPayment));
+    }
+    int payment = 0;
+    private void pay(String listPay){
 
+        // 0 oline
 
+        if (rbtnOnline.isChecked()){
+            payment = 1;
+        }else {
+            payment = 0;
+        }
+        SharedPreferences saveAcc = getSharedPreferences("SaveAcc",MODE_PRIVATE);
+        String email = saveAcc.getString("SaveEmail","");
+        String password = saveAcc.getString("SavePass","");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                handlerAddress.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog = new ProgressDialog(Pay.this);
+                        progressDialog.setMessage("Loanding");
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+                    }
+                });
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://khoihoang0511.000webhostapp.com/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                API api = retrofit.create(API.class);
+                Call<String> callDress = api.Pay(listPay,idaddress,payment,email,password);
+                callDress.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if (response.isSuccessful() && response.body() != null){
+                            progressDialog.dismiss();
+                            startActivity(new Intent(Pay.this, PaymentSuccess.class));
+                            Toast.makeText(Pay.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
+                        }else{
+                            progressDialog.dismiss();
+                            Log.e("=------->",response.body()+"");
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Toast.makeText(Pay.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Pay.this, PaymentSuccess.class));
+                        progressDialog.dismiss();
+                    }
+                });
+            }
+        }).start();
     }
 }

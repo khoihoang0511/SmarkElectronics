@@ -54,7 +54,6 @@
                 android:id="@+id/txtDetailedAddressSelectAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:hint="100 Tân Thới Nhất 13"
                 android:textSize="14dp" />
 

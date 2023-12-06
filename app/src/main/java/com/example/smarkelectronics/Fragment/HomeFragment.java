@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
         viewPager2 = view.findViewById(R.id.view_paper);
         recyclerView = view.findViewById(R.id.rcvproduct);
         searchsanpham = view.findViewById(R.id.searchsanpham);
-        ImageView imgcart = view.findViewById(R.id.imgcartt);
+        ImageView imgcartHome = view.findViewById(R.id.imgcartHome);
 
         Button btnAllCategory = view.findViewById(R.id.btnAllCategory);
         Button btnPhoneCategory = view.findViewById(R.id.btnPhoneCategory);
@@ -172,11 +172,10 @@ public class HomeFragment extends Fragment {
         };
         //---- sự kiện indicator khi kéo trượt ảnh
 
-        imgcart.setOnClickListener(new View.OnClickListener() {
+        imgcartHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),CartActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(getActivity(),CartActivity.class));
             }
         });
 

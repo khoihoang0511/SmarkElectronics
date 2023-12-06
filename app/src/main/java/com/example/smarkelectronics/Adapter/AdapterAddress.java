@@ -25,7 +25,7 @@ public class AdapterAddress extends RecyclerView.Adapter<AdapterAddress.Viewhold
     private ItemclickListenerAddress itemclickListenerAddress;
 
     public interface ItemclickListenerAddress{
-        void OnItemclickAddress(String name, String adress, String sdt);
+        void OnItemclickAddress(String name, String adress, String sdt,int id);
     }
 
     public void OnItemclickListenerAddress(ItemclickListenerAddress itemclickListenerAddress){
@@ -62,7 +62,8 @@ public class AdapterAddress extends RecyclerView.Adapter<AdapterAddress.Viewhold
                             list.get(position).getPhuong() + "," +
                             list.get(position).getQuan() + "," +
                             list.get(position).getThanhpho(),
-                            list.get(position).getPhoneaddress());
+                            list.get(position).getPhoneaddress(),
+                            list.get(position).getIdaddress());
                 }
             }
         });

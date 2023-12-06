@@ -1,66 +1,112 @@
 package com.example.smarkelectronics.Fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.smarkelectronics.Activity.MyReviewActivity;
+import com.example.smarkelectronics.Activity.PaymentSuccess;
+import com.example.smarkelectronics.Adapter.AdapterNotification;
+import com.example.smarkelectronics.Model.MyReviewModel;
+import com.example.smarkelectronics.Model.NotificationModel;
 import com.example.smarkelectronics.R;
+import com.example.smarkelectronics.api.API;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragment_notification_new#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+
 public class fragment_notification_new extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public ArrayList<NotificationModel> listNotification;
+    public AdapterNotification adapterNotification;
+    private ProgressDialog progressDialog;
+    private Handler handlerAddress = new Handler();
 
     public fragment_notification_new() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment fragment_notification_new.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static fragment_notification_new newInstance(String param1, String param2) {
-        fragment_notification_new fragment = new fragment_notification_new();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification_new, container, false);
+        View view = inflater.inflate(R.layout.fragment_notification_new, container, false);
+
+        RecyclerView rcvNOTIFICATION = view.findViewById(R.id.rcvNOTIFICATION);
+
+        listNotification = new ArrayList<>();
+        adapterNotification = new AdapterNotification(getContext(),listNotification);
+        rcvNOTIFICATION.setAdapter(adapterNotification);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rcvNOTIFICATION.setLayoutManager(linearLayoutManager);
+
+        getlistNotification();
+
+        return view;
+    }
+    private void getlistNotification(){
+        SharedPreferences saveAcc = getContext().getSharedPreferences("SaveAcc", MODE_PRIVATE);
+        String email = saveAcc.getString("SaveEmail", "");
+        String password = saveAcc.getString("SavePass", "");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                handlerAddress.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog = new ProgressDialog(getContext());
+                        progressDialog.setMessage("Loanding");
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+                    }
+                });
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://khoihoang0511.000webhostapp.com/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                API api = retrofit.create(API.class);
+                Call<ArrayList<NotificationModel>> callDress = api.getListNotification(email, password);
+                callDress.enqueue(new Callback<ArrayList<NotificationModel>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<NotificationModel>> call, Response<ArrayList<NotificationModel>> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            ArrayList<NotificationModel> list = response.body();
+                            listNotification.clear();
+                            listNotification.addAll(list);
+                            adapterNotification.notifyDataSetChanged();
+                            progressDialog.dismiss();
+                        } else {
+                            progressDialog.dismiss();
+                            Log.e("=------->", response.body() + "");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<NotificationModel>> call, Throwable t) {
+                        Toast.makeText(getContext(), "Thanh toán thành công", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                });
+            }
+        }).start();
     }
 }

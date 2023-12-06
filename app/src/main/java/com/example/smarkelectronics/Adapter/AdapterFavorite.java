@@ -1,7 +1,10 @@
 package com.example.smarkelectronics.Adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -146,6 +149,9 @@ public class AdapterFavorite extends RecyclerView.Adapter<AdapterFavorite.ViewHo
     }
 
     private void addFavoriteCart(int id){
+        SharedPreferences saveAcc = context.getSharedPreferences("SaveAcc", MODE_PRIVATE);
+        String email = saveAcc.getString("SaveEmail","");
+        String password = saveAcc.getString("SavePass","");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -163,7 +169,7 @@ public class AdapterFavorite extends RecyclerView.Adapter<AdapterFavorite.ViewHo
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 API api = retrofit.create(API.class);
-                Call<String> callproduct = api.addcart(1,id);
+                Call<String> callproduct = api.addcart(1,id,email,password);
                 callproduct.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
