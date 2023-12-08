@@ -1,7 +1,10 @@
 package com.example.smarkelectronics.Fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -175,7 +178,14 @@ public class HomeFragment extends Fragment {
         imgcartHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),CartActivity.class));
+                SharedPreferences saveAcc = getContext().getSharedPreferences("SaveAcc", MODE_PRIVATE);
+                String email = saveAcc.getString("SaveEmail","");
+                String password = saveAcc.getString("SavePass","");
+                if (email.isEmpty() || password.isEmpty()){
+                    Toast.makeText(getContext(), "Bạn chưa đăng nhập", Toast.LENGTH_SHORT).show();
+                }else {
+                    startActivity(new Intent(getActivity(),CartActivity.class));
+                }
             }
         });
 
@@ -295,9 +305,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         viewPager2.registerOnPageChangeCallback(onPageChangeCallback);
-
         new Thread(new Runnable() {
             @Override
             public void run() {

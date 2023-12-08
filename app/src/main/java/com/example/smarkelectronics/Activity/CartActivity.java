@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -84,6 +85,9 @@ public class CartActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         new Thread(new Runnable() {
+            SharedPreferences saveAcc = getSharedPreferences("SaveAcc",MODE_PRIVATE);
+            String email = saveAcc.getString("SaveEmail","");
+            String password = saveAcc.getString("SavePass","");
             @Override
             public void run() {
                 handlercart.post(new Runnable() {
@@ -100,7 +104,7 @@ public class CartActivity extends AppCompatActivity {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 API api = retrofit.create(API.class);
-                Call<ArrayList<Cart>> callcart = api.getlistcart();
+                Call<ArrayList<Cart>> callcart = api.getlistcart(email,password);
                 callcart.enqueue(new Callback<ArrayList<Cart>>() {
                     @Override
                     public void onResponse(Call<ArrayList<Cart>> call, Response<ArrayList<Cart>> response) {
@@ -121,7 +125,7 @@ public class CartActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ArrayList<Cart>> call, Throwable t) {
-//                        Toast.makeText(CartActivity.this, "Kết nối intener không ổn định", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CartActivity.this, "Bạn chưa thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 });

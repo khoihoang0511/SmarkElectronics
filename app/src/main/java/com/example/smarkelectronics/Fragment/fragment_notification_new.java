@@ -96,13 +96,12 @@ public class fragment_notification_new extends Fragment {
                             progressDialog.dismiss();
                         } else {
                             progressDialog.dismiss();
-                            Log.e("=------->", response.body() + "");
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ArrayList<NotificationModel>> call, Throwable t) {
-                        Toast.makeText(getContext(), "Thanh toán thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Bạn chưa có thông báo", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 });

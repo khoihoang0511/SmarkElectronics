@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -65,6 +66,9 @@ public class SelectAddress extends AppCompatActivity {
         super.onResume();
 
         new Thread(new Runnable() {
+            SharedPreferences saveAcc = getSharedPreferences("SaveAcc",MODE_PRIVATE);
+            String email = saveAcc.getString("SaveEmail","");
+            String password = saveAcc.getString("SavePass","");
             @Override
             public void run() {
                 handlerAddress.post(new Runnable() {
@@ -81,7 +85,7 @@ public class SelectAddress extends AppCompatActivity {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 API api = retrofit.create(API.class);
-                Call<ArrayList<AddressModel>> callAddress = api.getlistAddress();
+                Call<ArrayList<AddressModel>> callAddress = api.getlistAddress(email,password);
                 callAddress.enqueue(new Callback<ArrayList<AddressModel>>() {
                     @Override
                     public void onResponse(Call<ArrayList<AddressModel>> call, Response<ArrayList<AddressModel>> response) {

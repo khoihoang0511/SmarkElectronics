@@ -41,8 +41,6 @@ public class Addshippingaddress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addshippingaddress);
 
-
-
          edtNameAddShip = findViewById(R.id.edtNameAddShip);
          edtAddressAddShip = findViewById(R.id.edtAddressAddShip);
          edtPhoneNumber = findViewById(R.id.edtPhoneNumber);

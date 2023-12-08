@@ -68,7 +68,7 @@
         android:padding="10dp"/>
     <LinearLayout
         android:id="@+id/LayouTarrange"
-        android:layout_width="230dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@+id/toobarCategory"
@@ -76,14 +76,19 @@
         android:layout_alignParentEnd="true">
         <ToggleButton
             android:id="@+id/btnTArrangePrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:background="@drawable/boder"
             android:textOn="Giá từ thấp đến cao"
+            android:textColor="@color/white"
             android:textOff="Giá từ cao đến thấp"/>
         <ToggleButton
             android:id="@+id/btnTArrangeLetter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:background="@drawable/boder"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
             android:textOn="Xắp xếp từ a-z"
             android:textOff="Xắp xếp từ z-a"/>
     </LinearLayout>

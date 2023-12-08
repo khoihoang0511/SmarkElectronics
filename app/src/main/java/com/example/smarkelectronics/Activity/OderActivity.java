@@ -92,9 +92,7 @@ public class OderActivity extends AppCompatActivity {
                             listOder.addAll(list);
                             oderAdapter.notifyDataSetChanged();
                             progressDialog.dismiss();
-                            Toast.makeText(OderActivity.this, "aaaaaaaaaaaaaaaaaaaa"+list.size(), Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(OderActivity.this, response.body()+"lỗi", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     }

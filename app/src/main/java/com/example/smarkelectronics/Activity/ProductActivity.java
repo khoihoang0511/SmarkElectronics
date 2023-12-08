@@ -3,6 +3,8 @@ package com.example.smarkelectronics.Activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.ProgressDialog;
@@ -11,6 +13,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +21,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smarkelectronics.Adapter.AdapterFeedback;
 import com.example.smarkelectronics.Adapter.SliderProductAdapter;
+import com.example.smarkelectronics.Model.FeedbackModel;
 import com.example.smarkelectronics.Model.product;
 import com.example.smarkelectronics.R;
 import com.example.smarkelectronics.api.API;
@@ -41,13 +46,17 @@ public class ProductActivity extends AppCompatActivity {
     int position;
 
     int quanlityproduct = 1;
+    private ProgressDialog progressDialog;
+    private Handler handlerAddress = new Handler();
 
     //list nhập dữ liệu từ fragmenthome
     ArrayList<product> productlist;
+    ArrayList<FeedbackModel> listfeedbackModels;
+    AdapterFeedback adapterFeedback;
+    RecyclerView rcvFeetback;
 
 
     //api đẩy dữ liệu lên php
-    private ProgressDialog progressDialog;
     private Handler handlerproduct = new Handler();
 
     @Override
@@ -65,6 +74,7 @@ public class ProductActivity extends AppCompatActivity {
         TextView tvaddcart = findViewById(R.id.btnaddCart);
         Button btnfavorite = findViewById(R.id.btnfavorite);
         ImageView imgcartproduct = findViewById(R.id.imgcartproduct);
+        rcvFeetback = findViewById(R.id.rcvFeetback);
 
 //Nhận dữ liệu từ fragmenthome
         Intent intent = getIntent();
@@ -78,6 +88,7 @@ public class ProductActivity extends AppCompatActivity {
         DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
         tvPriceProduct.setText(decimalFormat.format(productlist.get(position).getPriceproduct()));
 
+
         //hiển thị danh sách ảnh
         list = new ArrayList<>();
         list.add(productlist.get(position).getImgavatar());
@@ -87,7 +98,13 @@ public class ProductActivity extends AppCompatActivity {
         sliderProductAdapter = new SliderProductAdapter(list,this);
         viewPagerProduct.setAdapter(sliderProductAdapter);
 
+        listfeedbackModels = new ArrayList<>();
+        adapterFeedback = new AdapterFeedback(ProductActivity.this,listfeedbackModels);
+        rcvFeetback.setAdapter(adapterFeedback);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ProductActivity.this);
+        rcvFeetback.setLayoutManager(linearLayoutManager);
 
+        feedbacklist();
 
         //Hiển thị indicator slider
         LinearLayout linearLayoutProduct = findViewById(R.id.indicator_layoutproduct);
@@ -138,6 +155,9 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new Thread(new Runnable() {
+                    SharedPreferences saveAcc = getSharedPreferences("SaveAcc",MODE_PRIVATE);
+                    String email = saveAcc.getString("SaveEmail","");
+                    String password = saveAcc.getString("SavePass","");
                     @Override
                     public void run() {
                         handlerproduct.post(new Runnable() {
@@ -154,7 +174,7 @@ public class ProductActivity extends AppCompatActivity {
                                 .addConverterFactory(GsonConverterFactory.create())
                                 .build();
                         API api = retrofit.create(API.class);
-                        Call<String> callfavorite = api.addfavorite(productlist.get(position).getIdproduct(),1);
+                        Call<String> callfavorite = api.addfavorite(productlist.get(position).getIdproduct(),email,password);
                         callfavorite.enqueue(new Callback<String>() {
                             @Override
                             public void onResponse(Call<String> call, Response<String> response) {
@@ -162,13 +182,15 @@ public class ProductActivity extends AppCompatActivity {
                                     progressDialog.dismiss();
                                     Toast.makeText(ProductActivity.this, "Đã thêm vào danh mục yêu thích", Toast.LENGTH_SHORT).show();
                                 }else {
-                                    Toast.makeText(ProductActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ProductActivity.this, "Bạn chưa đăng nhập", Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<String> call, Throwable t) {
-                                Toast.makeText(ProductActivity.this, "Kết nối không ổn định", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProductActivity.this, "Bạn chưa đăng nhập", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
                             }
                         });
                     }
@@ -235,17 +257,62 @@ public class ProductActivity extends AppCompatActivity {
                              if (response.isSuccessful() && response.body() != null){
                                  progressDialog.dismiss();
                                  Toast.makeText(ProductActivity.this, "Thêm giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                             }else {
+                                 Toast.makeText(ProductActivity.this, "Bạn chưa đăng nhập", Toast.LENGTH_SHORT).show();
+                                 progressDialog.dismiss();
                              }
                          }
 
                          @Override
                          public void onFailure(Call<String> call, Throwable t) {
-                             Toast.makeText(ProductActivity.this, "Kết nối không ổn định", Toast.LENGTH_SHORT).show();
+                             Toast.makeText(ProductActivity.this, "Bạn chưa đăng nhập", Toast.LENGTH_SHORT).show();
+                             progressDialog.dismiss();
                          }
                      });
                  }
              }).start();
             }
         });
+    }
+    private void feedbacklist(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                handlerAddress.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog = new ProgressDialog(ProductActivity.this);
+                        progressDialog.setMessage("Loanding");
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+                    }
+                });
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://khoihoang0511.000webhostapp.com/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                API api = retrofit.create(API.class);
+                Call<ArrayList<FeedbackModel>> call = api.getListFeedback(productlist.get(position).getIdproduct());
+                call.enqueue(new Callback<ArrayList<FeedbackModel>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<FeedbackModel>> call, Response<ArrayList<FeedbackModel>> response) {
+                        if (response.isSuccessful() && response.body() !=null){
+                            ArrayList<FeedbackModel> feedbackModels = response.body();
+                            listfeedbackModels.clear();
+                            listfeedbackModels.addAll(feedbackModels);
+                            adapterFeedback.notifyDataSetChanged();
+                            progressDialog.dismiss();
+                        }else {
+                            progressDialog.dismiss();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<FeedbackModel>> call, Throwable t) {
+                        progressDialog.dismiss();
+                    }
+                });
+            }
+        }).start();
     }
 }
