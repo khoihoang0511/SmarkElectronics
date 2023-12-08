@@ -5,6 +5,7 @@ import com.example.smarkelectronics.Model.Cart;
 import com.example.smarkelectronics.Model.CategoryModel;
 import com.example.smarkelectronics.Model.Customer;
 import com.example.smarkelectronics.Model.Favorite;
+import com.example.smarkelectronics.Model.FeedbackModel;
 import com.example.smarkelectronics.Model.MyReviewModel;
 import com.example.smarkelectronics.Model.NotificationModel;
 import com.example.smarkelectronics.Model.OderModel;
@@ -22,7 +23,7 @@ public interface API {
     Call<ArrayList<product>> getlistproduct();
 
     @GET("getlistcart.php")
-    Call<ArrayList<Cart>> getlistcart() ;
+    Call<ArrayList<Cart>> getlistcart(@Query("email")String email, @Query("password") String password) ;
 
     @GET("addcart.php")
     Call<String> addcart(@Query("soluong") int soluong,@Query("idproduct") int id,@Query("email")String email, @Query("password") String password);
@@ -49,7 +50,7 @@ public interface API {
                              @Query("password") String password);
 
     @GET("getlistAddress.php")
-    Call<ArrayList<AddressModel>> getlistAddress();
+    Call<ArrayList<AddressModel>> getlistAddress(@Query("email")String email, @Query("password") String password);
 
     @GET("deleteItemInCart.php")
     Call<String> delete_ItemInCare(@Query("IDCART")Integer idcart);
@@ -58,10 +59,10 @@ public interface API {
     Call<String> delete_ItemInAddress(@Query("IDAddress")Integer idaddress);
 
     @GET("addfavorite.php")
-    Call<String> addfavorite(@Query("idproduct") int idproduct, @Query("idcustomer") int idcustomer);
+    Call<String> addfavorite(@Query("idproduct") int idproduct,@Query("email")String email, @Query("password") String password);
 
     @GET("getlistfavorite.php")
-    Call<ArrayList<Favorite>> getlistfavorite();
+    Call<ArrayList<Favorite>> getlistfavorite(@Query("email")String email, @Query("password") String password);
 
     @GET("addcustomer.php")
     Call<String> addcustomer(@Query("namecustomer") String namecustomer,@Query("email") String email,@Query("passwordcustomer") String passwordcustomer);
@@ -97,4 +98,6 @@ public interface API {
     @GET("addReview.php")
     Call<String> addReview(@Query("numberofstars")int numberofstars,@Query("content")String content,@Query("id")int id,@Query("email")String email, @Query("password") String password);
 
+    @GET("getListFeedback.php")
+    Call<ArrayList<FeedbackModel>> getListFeedback(@Query("idproduct")int idproduct);
 }

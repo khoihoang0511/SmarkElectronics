@@ -148,7 +148,7 @@
                         android:layout_column="5"
                         android:layout_row="0"
                         android:textSize="12dp"
-                        android:drawableTop="@drawable/ic_battery_charging_full_24"
+                        android:drawableTop="@drawable/baseline_monitor_24"
                         android:padding="15dp"
                         android:layout_margin="5dp"
                         android:textColor="@color/white"

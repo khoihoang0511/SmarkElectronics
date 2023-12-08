@@ -43,10 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
-
     }
     public void changfragment(Fragment fragment){
         fragmentManager = getSupportFragmentManager();

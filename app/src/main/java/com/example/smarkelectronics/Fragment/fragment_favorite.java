@@ -1,7 +1,10 @@
 package com.example.smarkelectronics.Fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -81,6 +84,9 @@ public class fragment_favorite extends Fragment {
     public void onResume() {
         super.onResume();
         new Thread(new Runnable() {
+            SharedPreferences saveAcc = getContext().getSharedPreferences("SaveAcc", MODE_PRIVATE);
+            String email = saveAcc.getString("SaveEmail","");
+            String password = saveAcc.getString("SavePass","");
             @Override
             public void run() {
                 handlerfavorite.post(new Runnable() {
@@ -97,7 +103,7 @@ public class fragment_favorite extends Fragment {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 API api = retrofit.create(API.class);
-                Call<ArrayList<Favorite>> callfavorite = api.getlistfavorite();
+                Call<ArrayList<Favorite>> callfavorite = api.getlistfavorite(email,password);
                 callfavorite.enqueue(new Callback<ArrayList<Favorite>>() {
                     @Override
                     public void onResponse(Call<ArrayList<Favorite>> call, Response<ArrayList<Favorite>> response) {
@@ -117,7 +123,7 @@ public class fragment_favorite extends Fragment {
 
                     @Override
                     public void onFailure(Call<ArrayList<Favorite>> call, Throwable t) {
-                        Toast.makeText(getContext(), "There are no favorite products", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Bạn chưa có sản phẩm yêu thích", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 });
@@ -205,7 +211,7 @@ public class fragment_favorite extends Fragment {
                 callproduct.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-                        Toast.makeText(getContext(), "All products have been added to the cart", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Bạn chưa có sản phẩm yêu thích", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
 

@@ -15,11 +15,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smarkelectronics.Activity.Addshippingaddress;
+import com.example.smarkelectronics.Activity.LoginActivity;
+import com.example.smarkelectronics.Activity.MainActivity;
 import com.example.smarkelectronics.Activity.MyReviewActivity;
 import com.example.smarkelectronics.Activity.MyshipPingAddress;
 import com.example.smarkelectronics.Activity.OderActivity;
@@ -65,12 +69,38 @@ public class fragment_profile_new extends Fragment {
         txtNumberEvaluate = view.findViewById(R.id.txtNumberEvaluate);
         RelativeLayout rltMyOrder = view.findViewById(R.id.rltMyOrder);
         RelativeLayout rltMyreview5 = view.findViewById(R.id.rltMyreview5);
+        ImageView imgLogOut = view.findViewById(R.id.imgLogOut);
+        Button btnLoginProfile = view.findViewById(R.id.btnLoginProfile);
 
         RelativeLayout rcvMyshippingaddress = view.findViewById(R.id.rcvMyshippingaddress);
         saveAcc = getContext().getSharedPreferences("SaveAcc", MODE_PRIVATE);
         email = saveAcc.getString("SaveEmail",null);
         password = saveAcc.getString("SavePass",null);
 
+
+        if (email.isEmpty() || password.isEmpty()){
+            btnLoginProfile.setVisibility(View.VISIBLE);
+            imgLogOut.setVisibility(View.GONE);
+        }else {
+            btnLoginProfile.setVisibility(View.GONE);
+            imgLogOut.setVisibility(View.VISIBLE);
+        }
+        btnLoginProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), LoginActivity.class));
+            }
+        });
+        imgLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = saveAcc.edit();
+                editor.putString("SaveEmail","");
+                editor.putString("SavePass","");
+                editor.apply();
+                startActivity(new Intent(getContext(), MainActivity.class));
+            }
+        });
         rltMyreview5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
